@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DivisiController;
+use App\Http\Controllers\DokumentasiController;
 use App\Http\Controllers\KepengurusanController;
 
 
@@ -37,4 +38,4 @@ Route::get('/divisi/multimedia', [DivisiController::class, 'multimedia'])->name(
 Route::get('/kepengurusan', [KepengurusanController::class, 'index'])->name('kepengurusan');
 
 //dokumentasi
-Route::get('/dokumentasi', 'App\Http\Controllers\DokumentasiController@index')->name('dokumentasi');
+Route::get('/dokumentasi', [DokumentasiController::class, 'index'])->name('dokumentasi');
