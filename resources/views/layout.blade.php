@@ -31,8 +31,9 @@
                         <a href="{{ route('divisi.multimedia') }}" class="block hover:bg-orange-500 p-2">Divisi Multimedia</a>
                     </div>
                 </li>
-                <li><a href="{{ route('kepengurusan') }}" class="hover:text-orange-300">Kepengurusan</a></li>
-                <li><a href="{{ route('dokumentasi') }}" class="hover:text-orange-300">Dokumentasi</a></li>
+                <li><a href="{{ route('pengurus.index') }}" class="hover:text-orange-300">Kepengurusan</a></li>
+                <li><a href="{{ route('dokumentasi.index') }}" class="hover:text-orange-300">Dokumentasi</a></li>
+                <li><a href="{{ route('login') }}" class="hover:text-orange-300">Login</a></li>
             </ul>
         </nav>
     </header>
