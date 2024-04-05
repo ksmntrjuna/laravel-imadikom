@@ -33,7 +33,23 @@
                 </li>
                 <li><a href="{{ route('pengurus.index') }}" class="hover:text-orange-300">Kepengurusan</a></li>
                 <li><a href="{{ route('dokumentasi.index') }}" class="hover:text-orange-300">Dokumentasi</a></li>
+
+
+                <!-- Login -->
+                @if(Auth::check())
+                <!-- Jika pengguna sudah login, tampilkan menu 'Logout' -->
+                <li>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+           document.getElementById('logout-form').submit();" class="hover:text-orange-300">Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                        @csrf
+                    </form>
+                </li>
+                @else
+                <!-- Jika pengguna belum login, tampilkan menu 'Login' -->
                 <li><a href="{{ route('login') }}" class="hover:text-orange-300">Login</a></li>
+                @endif
+
             </ul>
         </nav>
     </header>

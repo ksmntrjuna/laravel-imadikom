@@ -12,6 +12,10 @@
     @extends('layout')
 
     @section('content')
+    @auth
+    <!-- Menampilkan pesan selamat datang hanya jika pengguna telah login -->
+    <h2 class="text-xl font-semibold">Selamat Datang, {{ $user->name }}!</h2>
+    @endauth
     <div class="container mx-auto px-4 py-8">
         <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <h1 class="text-4xl font-bold mb-2 text-center">IMADIKOM</h1>

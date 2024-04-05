@@ -27,6 +27,7 @@ use App\Http\Controllers\PengurusController;
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+
 // Divisi
 Route::get('/divisi/bph', [DivisiController::class, 'bph'])->name('divisi.bph');
 Route::get('/divisi/psdm', [DivisiController::class, 'psdm'])->name('divisi.psdm');
@@ -53,4 +54,7 @@ Route::put('/dokumentasi/{dokumentasi}', [DokumentasiController::class, 'update'
 Route::delete('/dokumentasi/{dokumentasi}', [DokumentasiController::class, 'destroy'])->name('dokumentasi.destroy');
 
 // Login
-Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
