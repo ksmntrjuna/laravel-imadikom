@@ -18,6 +18,7 @@
                 <th>Aksi</th>
             </tr>
         </thead>
+
         <tbody>
             @foreach($dokumentasis as $dokumentasi)
             <tr>
@@ -25,7 +26,9 @@
                 <td>{{ $dokumentasi->deskripsi }}</td>
                 <td>{{ $dokumentasi->tanggal }}</td>
                 <td>{{ $dokumentasi->tempat }}</td>
-                <td><img src="{{ $dokumentasi->getFotoUrlAttribute() }}" alt="Foto Dokumentasi" style="max-width: 100px;"></td>
+                <td>
+                    <img src="{{ $dokumentasi->getFotoUrlAttribute() }}" alt="Foto Dokumentasi" style="max-width: 100px;">
+                </td>
                 <td>
                     <a href="{{ route('dokumentasi.edit', $dokumentasi->id) }}" class="btn btn-primary btn-sm">Edit</a>
                     <form action="{{ route('dokumentasi.destroy', $dokumentasi->id) }}" method="POST" class="d-inline">

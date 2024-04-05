@@ -33,7 +33,7 @@ class DokumentasiController extends Controller
         $dokumentasiData = $request->except('foto');
 
         if ($request->hasFile('foto')) {
-            $fotoPath = $request->file('foto')->store('dokumentasi');
+            $fotoPath = $request->file('foto')->store('public/dokumentasi'); // Simpan di direktori public/dokumentasi
             $dokumentasiData['foto'] = $fotoPath;
         }
 
@@ -41,6 +41,8 @@ class DokumentasiController extends Controller
 
         return redirect()->route('dokumentasi.index')->with('success', 'Dokumentasi berhasil ditambahkan.');
     }
+
+
 
     public function edit(Dokumentasi $dokumentasi)
     {
@@ -86,4 +88,3 @@ class DokumentasiController extends Controller
         return redirect()->route('dokumentasi.index')->with('success', 'Dokumentasi berhasil dihapus.');
     }
 }
-
