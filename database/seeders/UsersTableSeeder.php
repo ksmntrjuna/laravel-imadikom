@@ -16,8 +16,8 @@ class UsersTableSeeder extends Seeder
     {
         User::create([
             'name' => 'admin-imadikom',
-            'email' => 'kipamikom@gmial.com',
-            'password' => Hash::make('imadikom2024'),
+            'email' => 'kipamikom@gmail.com',
+            'password' => '$2y$12$x1BCXRGysmurkOpyZwMuQ.OooeM.Rjw7fT.xQWvbPY6.3dheGvcZS',
         ]);
     }
 }
