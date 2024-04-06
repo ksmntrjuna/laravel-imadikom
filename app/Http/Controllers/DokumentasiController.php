@@ -11,8 +11,10 @@ class DokumentasiController extends Controller
 {
     public function index()
     {
-        $dokumentasis = Dokumentasi::all();
-        return view('dokumentasi.index', compact('dokumentasis'));
+        $user = auth()->user();
+        $dokumentasi = Dokumentasi::all();
+
+        return view('dokumentasi.index', compact('dokumentasi', 'user'));
     }
 
     public function create()

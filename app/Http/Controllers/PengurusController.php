@@ -12,8 +12,10 @@ class PengurusController extends Controller
     // Menampilkan semua pengurus
     public function index()
     {
+        $user = auth()->user();
         $pengurus = Pengurus::all();
-        return view('pengurus.index', compact('pengurus'));
+        
+        return view('pengurus.index', compact('pengurus', 'user'));
     }
 
     // Menampilkan form untuk menambahkan pengurus baru
