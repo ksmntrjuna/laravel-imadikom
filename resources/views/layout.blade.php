@@ -32,6 +32,7 @@
                     </div>
                 </li>
                 <li><a href="{{ route('pengurus.index') }}" class="hover:text-orange-300">Kepengurusan</a></li>
+                <li><a href="{{ route('jadwal.index') }}" class="hover:text-orange-300">Jadwal</a></li>
                 <li><a href="{{ route('dokumentasi.index') }}" class="hover:text-orange-300">Dokumentasi</a></li>
 
 

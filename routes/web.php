@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DivisiController;
 use App\Http\Controllers\DokumentasiController;
+use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\PengurusController;
 
 
@@ -43,7 +44,14 @@ Route::post('/pengurus', [PengurusController::class, 'store'])->name('pengurus.s
 Route::get('/pengurus/{pengurus}/edit', [PengurusController::class, 'edit'])->name('pengurus.edit');
 Route::put('/pengurus/{pengurus}', [PengurusController::class, 'update'])->name('pengurus.update');
 Route::delete('/pengurus/{pengurus}', [PengurusController::class, 'destroy'])->name('pengurus.destroy');
-Route::get('/dokumentasi', [DokumentasiController::class, 'index'])->name('dokumentasi');
+
+// Jadwal
+Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal.index');
+Route::get('/jadwal/create', [JadwalController::class, 'create'])->name('jadwal.create');
+Route::post('/jadwal', [JadwalController::class, 'store'])->name('jadwal.store');
+Route::get('/jadwal/{jadwal}/edit', [JadwalController::class, 'edit'])->name('jadwal.edit');
+Route::put('/jadwal/{jadwal}', [JadwalController::class, 'update'])->name('jadwal.update');
+Route::delete('/jadwal/{jadwal}', [JadwalController::class, 'destroy'])->name('jadwal.destroy');
 
 // Dokumentasi
 Route::get('/dokumentasi', [DokumentasiController::class, 'index'])->name('dokumentasi.index');

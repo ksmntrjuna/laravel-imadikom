@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOKUMETASI IMADIKOM</title>
+    <title>JADWAL IMADIKOM</title>
     <!-- Mengimpor Tailwind CSS -->
     @vite('resources/css/app.css')
 </head>
@@ -14,23 +14,24 @@
 
     @section('content')
     <div class="container mx-auto px-4">
-        <h2 class="text-2xl font-bold mb-4">Dokumentasi</h2>
+        <h1 class="text-2xl font-bold mb-4">Daftar Jadwal</h1>
         @auth
-        <!-- Display the "Tambah" button only for authenticated users -->
-        <a href="{{ route('dokumentasi.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded mb-2 inline-block">Tambah</a>
+        <!-- Display the "Tambah Jadwal" button only for authenticated users -->
+        <a href="{{ route('jadwal.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block">Tambah Jadwal</a>
         @if(session('success'))
         <div class="bg-green-200 text-green-800 px-4 py-2 rounded mb-4">{{ session('success') }}</div>
         @endif
         @endauth
+
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-200">
                     <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Deskripsi</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jam</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tempat</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Foto</th>
                         @auth
                         <!-- Display the "Aksi" column only for authenticated users -->
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
@@ -38,23 +39,21 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                    @foreach($dokumentasi as $d)
+                    @foreach($jadwal as $index => $j)
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $d->nama }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $d->deskripsi }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $d->tanggal }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $d->tempat }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <img src="{{ $d->getFotoUrlAttribute() }}" alt="Foto Dokumentasi" class="max-w-xs max-h-24">
-                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $index + 1 }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $j->nama }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $j->tanggal }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $j->jam }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $j->tempat }}</td>
                         @auth
                         <!-- Display the "Edit" and "Hapus" buttons only for authenticated users -->
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <a href="{{ route('dokumentasi.edit', $d->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
-                            <form action="{{ route('dokumentasi.destroy', $d->id) }}" method="POST" class="inline-block">
+                            <a href="{{ route('jadwal.edit', $j->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
+                            <form action="{{ route('jadwal.destroy', $j->id) }}" method="POST" class="inline-block">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Apakah Anda yakin ingin menghapus dokumentasi ini?')">Hapus</button>
+                                <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')">Hapus</button>
                             </form>
                         </td>
                         @endauth
@@ -65,6 +64,7 @@
         </div>
     </div>
     @endsection
+
 </body>
 
 </html>
