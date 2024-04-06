@@ -1,51 +1,55 @@
 @extends('layout')
 
 @section('content')
-<div class="container">
-    <h2>Dokumentasi</h2>
+<div class="container mx-auto px-4">
+    <h2 class="text-2xl font-bold mb-4">Dokumentasi</h2>
     @auth
-    <a href="{{ route('dokumentasi.create') }}" class="btn btn-primary mb-2">Tambah</a>
+    <!-- Display the "Tambah" button only for authenticated users -->
+    <a href="{{ route('dokumentasi.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded mb-2 inline-block">Tambah</a>
     @if(session('success'))
-    <div class="alert alert-success">{{ session('success') }}</div>
+    <div class="bg-green-200 text-green-800 px-4 py-2 rounded mb-4">{{ session('success') }}</div>
     @endif
     @endauth
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nama</th>
-                <th>Deskripsi</th>
-                <th>Tanggal</th>
-                <th>Tempat</th>
-                <th>Foto</th>
-                @auth
-                <th>Aksi</th>
-                @endauth
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach($dokumentasi as $d)
-            <tr>
-                <td>{{ $d->nama }}</td>
-                <td>{{ $d->deskripsi }}</td>
-                <td>{{ $d->tanggal }}</td>
-                <td>{{ $d->tempat }}</td>
-                <td>
-                    <img src="{{ $d->getFotoUrlAttribute() }}" alt="Foto Dokumentasi" style="max-width: 100px;">
-                </td>
-                @auth
-                <td>
-                    <a href="{{ route('dokumentasi.edit', $d->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                    <form action="{{ route('dokumentasi.destroy', $d->id) }}" method="POST" class="d-inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus dokumentasi ini?')">Hapus</button>
-                    </form>
-                </td>
-                @endauth
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-200">
+                <tr>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Deskripsi</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tempat</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Foto</th>
+                    @auth
+                    <!-- Display the "Aksi" column only for authenticated users -->
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                    @endauth
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                @foreach($dokumentasi as $d)
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ $d->nama }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ $d->deskripsi }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ $d->tanggal }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ $d->tempat }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <img src="{{ $d->getFotoUrlAttribute() }}" alt="Foto Dokumentasi" class="max-w-xs max-h-24">
+                    </td>
+                    @auth
+                    <!-- Display the "Edit" and "Hapus" buttons only for authenticated users -->
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <a href="{{ route('dokumentasi.edit', $d->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
+                        <form action="{{ route('dokumentasi.destroy', $d->id) }}" method="POST" class="inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Apakah Anda yakin ingin menghapus dokumentasi ini?')">Hapus</button>
+                        </form>
+                    </td>
+                    @endauth
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 @endsection
