@@ -69,7 +69,7 @@ class DokumentasiController extends Controller
                 Storage::delete($dokumentasi->foto);
             }
 
-            $fotoPath = $request->file('foto')->store('dokumentasi');
+            $fotoPath = $request->file('foto')->store('public/dokumentasi');
             $dokumentasiData['foto'] = $fotoPath;
         }
 

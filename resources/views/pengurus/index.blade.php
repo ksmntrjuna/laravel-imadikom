@@ -14,7 +14,8 @@
 
     @section('content')
     <div class="container mx-auto">
-        <h2 class="text-2xl font-bold mt-8 mb-4">Daftar Pengurus</h2>
+        <h1 class="text-4xl font-bold mb-2 text-center">Daftar Pengurus IMADIKOM</h1>
+
         @auth
         <!-- Display the "Tambah Pengurus" button only for authenticated users -->
         <a href="{{ route('pengurus.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4">Tambah Pengurus</a>
@@ -27,6 +28,7 @@
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Divisi</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jabatan</th>
@@ -37,8 +39,10 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                    @foreach($pengurus as $p)
+                    @foreach($pengurus as $index => $p)
+
                     <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $index + 1 }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $p->nama }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $p->divisi->nama_divisi }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $p->jabatan->nama_jabatan }}</td>
