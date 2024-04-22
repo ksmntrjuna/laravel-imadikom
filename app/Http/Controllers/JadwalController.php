@@ -7,11 +7,26 @@ use Illuminate\Http\Request;
 
 class JadwalController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $jadwal = Jadwal::all();
+        // Ambil kata kunci dari permintaan pengguna
+        $search = $request->input('search');
+
+        // Jika ada kata kunci pencarian, lakukan pencarian berdasarkan kata kunci tersebut
+        if ($search) {
+            $jadwal = Jadwal::where('nama', 'like', '%' . $search . '%')
+                ->orWhere('tempat', 'like', '%' . $search . '%')
+                ->orWhere('tanggal', 'like', '%' . $search . '%')
+                ->get();
+        } else {
+            // Jika tidak ada kata kunci, ambil semua data jadwal
+            $jadwal = Jadwal::all();
+        }
+
+        // Kirimkan data jadwal ke view
         return view('jadwal.index', compact('jadwal'));
     }
+
 
     public function create()
     {

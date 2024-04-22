@@ -9,13 +9,28 @@ use Illuminate\Support\Facades\Storage;
 
 class DokumentasiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $user = auth()->user();
-        $dokumentasi = Dokumentasi::all();
+
+        // Ambil kata kunci dari permintaan
+        $search = $request->input('search');
+
+        // Jika ada kata kunci, lakukan pencarian
+        if ($search) {
+            $dokumentasi = Dokumentasi::where('nama', 'like', '%' . $search . '%')
+                ->orWhere('deskripsi', 'like', '%' . $search . '%')
+                ->orWhere('tanggal', 'like', '%' . $search . '%')
+                ->orWhere('tempat', 'like', '%' . $search . '%')
+                ->get();
+        } else {
+            // Jika tidak ada kata kunci, ambil semua data
+            $dokumentasi = Dokumentasi::all();
+        }
 
         return view('dokumentasi.index', compact('dokumentasi', 'user'));
     }
+
 
     public function create()
     {

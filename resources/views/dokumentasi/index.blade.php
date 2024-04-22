@@ -23,6 +23,13 @@
         <div class="bg-green-200 text-green-800 px-4 py-2 rounded mb-4">{{ session('success') }}</div>
         @endif
         @endauth
+
+        <!-- Formulir Pencarian -->
+        <form method="GET" action="{{ route('dokumentasi.index') }}" class="mb-4">
+            <input type="text" name="search" placeholder="Cari..." class="border px-4 py-2 rounded" value="{{ request('search') }}">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Cari</button>
+        </form>
+
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-200">

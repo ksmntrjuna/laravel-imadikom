@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMADIKOM</title>
+    <title>LAYOUT</title>
     <!-- Mengimpor Tailwind CSS -->
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-</head>
+
 
 <body class="bg-gray-100 flex flex-col min-h-screen">
     <header class="bg-purple-900 text-white">
@@ -130,22 +130,6 @@
             </li>
             @endif
         </ul>
-
-        <!-- Script for Mobile Menu Toggle -->
-        <script>
-            function toggleDivisiDropdown(event) {
-                event.preventDefault();
-                var divisiDropdown = document.getElementById('divisi-dropdown');
-                divisiDropdown.classList.toggle('hidden');
-            }
-
-            const menuToggle = document.getElementById('menu-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            menuToggle.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
-        </script>
     </header>
 
 
@@ -188,6 +172,22 @@
                     content.classList.add('hidden');
                 }
             });
+        });
+    </script>
+
+    <!-- Script for Mobile Menu Toggle -->
+    <script>
+        function toggleDivisiDropdown(event) {
+            event.preventDefault();
+            var divisiDropdown = document.getElementById('divisi-dropdown');
+            divisiDropdown.classList.toggle('hidden');
+        }
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
         });
     </script>
 </body>

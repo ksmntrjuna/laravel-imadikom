@@ -10,10 +10,26 @@ use Illuminate\Http\Request;
 class PengurusController extends Controller
 {
     // Menampilkan semua pengurus
-    public function index()
+    public function index(Request $request)
     {
         $user = auth()->user();
-        $pengurus = Pengurus::all();
+        // Ambil parameter pencarian dari permintaan pengguna
+        $search = $request->input('search');
+
+        // Jika ada parameter pencarian, gunakan untuk melakukan pencarian
+        if ($search) {
+            $pengurus = Pengurus::where('nama', 'like', '%' . $search . '%')
+                ->orWhereHas('divisi', function ($query) use ($search) {
+                    $query->where('nama_divisi', 'like', '%' . $search . '%');
+                })
+                ->orWhereHas('jabatan', function ($query) use ($search) {
+                    $query->where('nama_jabatan', 'like', '%' . $search . '%');
+                })
+                ->get();
+        } else {
+            // Jika tidak ada parameter pencarian, ambil semua pengurus
+            $pengurus = Pengurus::all();
+        }
         
         return view('pengurus.index', compact('pengurus', 'user'));
     }
