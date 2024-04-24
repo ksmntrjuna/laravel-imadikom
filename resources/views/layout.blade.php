@@ -7,9 +7,9 @@
     <title>LAYOUT</title>
     <!-- Mengimpor Tailwind CSS -->
     @vite('resources/css/app.css')
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-
+</head>
 
 <body class="bg-gray-100 flex flex-col min-h-screen">
     <header class="bg-purple-900 text-white">
@@ -133,13 +133,14 @@
     </header>
 
 
+
     <main class="flex-grow">
         @yield('content')
     </main>
 
-
-    <footer class="bg-orange-500 text-white p-4">
-        <div class="flex flex-col items-center">
+    <!-- footer-->
+    <footer class="bg-orange-500 text-white">
+    <div class="flex flex-col items-center">
             <img src="{{ asset('images/logo-putih.png') }}" alt="Logo-putih" class="h-8 mb-4">
             <p class="text-center text-sm mb-4 max-w-xs mx-auto">Alamat: Jl. Ring Road Utara, Ngringin, Condongcatur, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281</p>
             <div class="flex space-x-4 mb-4">
@@ -150,10 +151,8 @@
                     <i class="far fa-envelope"></i> kipamikom@gmail.com
                 </a>
             </div>
-            <p class="text-center text-sm">© 2024 IMADIKOM. by KSMNTR.</p>
-        </div>
+    </div>
     </footer>
-
 
 
     <!-- Skrip JavaScript untuk menangani dropdown -->
@@ -191,5 +190,9 @@
         });
     </script>
 </body>
-
+<footer class="bg-orange-500 text-white sticky bottom-0 p-4">
+        <div class="flex flex-col items-center bg-orange-500 text-white ">
+            <p class="text-center text-sm">© 2024 IMADIKOM. by KSMNTR.</p>
+        </div>
+    </footer>
 </html>
