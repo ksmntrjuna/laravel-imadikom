@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LAYOUT</title>
     <!-- Mengimpor Tailwind CSS -->
-    @vite('resources/css/app.css')
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -20,22 +19,22 @@
             </div>
 
             <!-- Menu -->
-            <ul class="hidden md:flex items-center space-x-4">
+            <ul class="hidden md:flex items-center space-x-4 z-10">
                 <li class="{{ request()->routeIs('home') ? 'bg-orange-500 rounded-lg' : '' }}">
                     <a href="{{ route('home') }}" class="block px-4 py-2 {{ request()->routeIs('home') ? 'text-white' : 'hover:text-orange-300' }}">Home</a>
                 </li>
 
-                <li class="relative group {{ request()->routeIs('divisi.*') ? 'bg-orange-500 rounded-lg' : '' }}">
+                <li id="dropdown-button" class="relative group {{ request()->routeIs('divisi.*') ? 'bg-orange-500 rounded-lg' : '' }}">
                     <a href="#" class="block px-4 py-2 {{ request()->routeIs('divisi.*') ? 'text-white' : 'hover:text-orange-300' }}">
                         Divisi
                     </a>
-                    <div class="dropdown-content absolute hidden group-hover:block bg-purple-700 text-white p-2 mt-1 rounded shadow-lg">
-                        <a href="{{ route('divisi.bph') }}" class="block px-4 py-2 hover:bg-orange-500">Divisi BPH</a>
-                        <a href="{{ route('divisi.psdm') }}" class="block px-4 py-2 hover:bg-orange-500">Divisi PSDM</a>
-                        <a href="{{ route('divisi.sosma') }}" class="block px-4 py-2 hover:bg-orange-500">Divisi Sosma</a>
-                        <a href="{{ route('divisi.kwu') }}" class="block px-4 py-2 hover:bg-orange-500">Divisi KWU</a>
-                        <a href="{{ route('divisi.humas') }}" class="block px-4 py-2 hover:bg-orange-500">Divisi Humas</a>
-                        <a href="{{ route('divisi.multimedia') }}" class="block px-4 py-2 hover:bg-orange-500">Divisi Multimedia</a>
+                    <div class="dropdown-content absolute hidden group-hover:block duration-500 bg-purple-700 text-white p-2 mt-1 rounded shadow-lg">
+                        <a href="{{ route('divisi.bph') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.bph') ? 'text-white' : 'text-gray-200' }}">Divisi BPH</a>
+                        <a href="{{ route('divisi.psdm') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.psdm') ? 'text-white' : 'text-gray-200' }}">Divisi PSDM</a>
+                        <a href="{{ route('divisi.sosma') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.sosma') ? 'text-white' : 'text-gray-200' }}">Divisi Sosma</a>
+                        <a href="{{ route('divisi.kwu') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.kwu') ? 'text-white' : 'text-gray-200' }}">Divisi KWU</a>
+                        <a href="{{ route('divisi.humas') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.humas') ? 'text-white' : 'text-gray-200' }}">Divisi Humas</a>
+                        <a href="{{ route('divisi.multimedia') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.multimedia') ? 'text-white' : 'text-gray-200' }}">Divisi Multimedia</a>
                     </div>
                 </li>
                 <li class="{{ request()->routeIs('pengurus.index') ? 'bg-orange-500 rounded-lg' : '' }}">
@@ -80,7 +79,7 @@
         </nav>
 
         <!-- Mobile Menu -->
-        <ul id="mobile-menu" class="bg-purple-900 text-white hidden absolute w-full">
+        <ul id="mobile-menu" class="bg-purple-900 text-white hidden absolute w-full z-50">
             <li class="{{ request()->routeIs('home') ? 'bg-orange-500' : '' }}">
                 <a href="{{ route('home') }}" class="block px-4 py-2 {{ request()->routeIs('home') ? 'text-white' : 'hover:text-orange-300' }}">
                     Home
@@ -92,12 +91,12 @@
                     <i class="fas fa-chevron-down"></i>
                 </a>
                 <ul id="divisi-dropdown" class="hidden bg-purple-700 text-white p-2 mt-1">
-                    <a href="{{ route('divisi.bph') }}" class="block px-4 py-2 hover:bg-orange-500">Divisi BPH</a>
-                    <a href="{{ route('divisi.psdm') }}" class="block px-4 py-2 hover:bg-orange-500">Divisi PSDM</a>
-                    <a href="{{ route('divisi.sosma') }}" class="block px-4 py-2 hover:bg-orange-500">Divisi Sosma</a>
-                    <a href="{{ route('divisi.kwu') }}" class="block px-4 py-2 hover:bg-orange-500">Divisi KWU</a>
-                    <a href="{{ route('divisi.humas') }}" class="block px-4 py-2 hover:bg-orange-500">Divisi Humas</a>
-                    <a href="{{ route('divisi.multimedia') }}" class="block px-4 py-2 hover:bg-orange-500">Divisi Multimedia</a>
+                    <a href="{{ route('divisi.bph') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.bph') ? 'text-white' : 'text-gray-200' }}">Divisi BPH</a>
+                    <a href="{{ route('divisi.psdm') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.psdm') ? 'text-white' : 'text-gray-200' }}">Divisi PSDM</a>
+                    <a href="{{ route('divisi.sosma') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.sosma') ? 'text-white' : 'text-gray-200' }}">Divisi Sosma</a>
+                    <a href="{{ route('divisi.kwu') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.kwu') ? 'text-white' : 'text-gray-200' }}">Divisi KWU</a>
+                    <a href="{{ route('divisi.humas') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.humas') ? 'text-white' : 'text-gray-200' }}">Divisi Humas</a>
+                    <a href="{{ route('divisi.multimedia') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.multimedia') ? 'text-white' : 'text-gray-200' }}">Divisi Multimedia</a>
                 </ul>
             </li>
 
@@ -132,17 +131,15 @@
         </ul>
     </header>
 
-
-
     <main class="flex-grow">
         @yield('content')
     </main>
 
     <!-- footer-->
-    <footer class="bg-orange-500 text-white">
-    <div class="flex flex-col items-center">
+    <footer class="bg-orange-500 text-white p-4">
+        <div class="flex flex-col items-center">
             <img src="{{ asset('images/logo-putih.png') }}" alt="Logo-putih" class="h-8 mb-4">
-            <p class="text-center text-sm mb-4 max-w-xs mx-auto">Alamat: Jl. Ring Road Utara, Ngringin, Condongcatur, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281</p>
+            <p class="text-center text-sm mb-4 mx-auto">Alamat: Jl. Ring Road Utara, Ngringin, Condongcatur, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281</p>
             <div class="flex space-x-4 mb-4">
                 <a href="https://www.instagram.com/imadikom?igsh=dXNpczRmaGU4NHdt" target="_blank" class="hover:text-gray-300 flex items-center">
                     <i class="fab fa-instagram"></i> imadikom
@@ -151,9 +148,8 @@
                     <i class="far fa-envelope"></i> kipamikom@gmail.com
                 </a>
             </div>
-    </div>
+        </div>
     </footer>
-
 
     <!-- Skrip JavaScript untuk menangani dropdown -->
     <script>
@@ -172,6 +168,7 @@
                 }
             });
         });
+        
     </script>
 
     <!-- Script for Mobile Menu Toggle -->
@@ -190,9 +187,11 @@
         });
     </script>
 </body>
+
 <footer class="bg-orange-500 text-white sticky bottom-0 p-4">
-        <div class="flex flex-col items-center bg-orange-500 text-white ">
-            <p class="text-center text-sm">© 2024 IMADIKOM. by KSMNTR.</p>
-        </div>
-    </footer>
+    <div class="flex flex-col items-center bg-orange-500 text-white ">
+        <p class="text-center text-sm">© 2024 IMADIKOM. by KSMNTR.</p>
+    </div>
+</footer>
+
 </html>

@@ -10,7 +10,7 @@
 
 <body class="bg-gray-100">
     @extends('layout')
-
+</body>
     @section('content')
     @auth
     <!-- Menampilkan pesan selamat datang hanya jika pengguna telah login -->
@@ -71,6 +71,6 @@
 </div>
 
     @endsection
-</body>
+
 
 </html>
