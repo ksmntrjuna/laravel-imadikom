@@ -8,31 +8,43 @@ class DivisiController extends Controller
 {
     public function bph()
     {
-        return view('divisi.bph');
+        $user = auth()->user();
+
+        return view('divisi.bph', compact('user'));
     }
 
     public function psdm()
     {
-        return view('divisi.psdm');
+        $user = auth()->user();
+
+        return view('divisi.psdm', compact('user'));
     }
 
     public function sosma()
     {
-        return view('divisi.sosma');
+        $user = auth()->user();
+
+        return view('divisi.sosma', compact('user'));
     }
 
     public function kwu()
     {
-        return view('divisi.kwu');
+        $user = auth()->user();
+
+        return view('divisi.kwu', compact('user'));
     }
 
     public function humas()
     {
-        return view('divisi.humas');
+        $user = auth()->user();
+
+        return view('divisi.humas', compact('user'));
     }
 
     public function multimedia()
     {
-        return view('divisi.multimedia');
+        $user = auth()->user();
+
+        return view('divisi.multimedia', compact('user'));
     }
 }

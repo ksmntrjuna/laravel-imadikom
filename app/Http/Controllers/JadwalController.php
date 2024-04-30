@@ -9,6 +9,8 @@ class JadwalController extends Controller
 {
     public function index(Request $request)
     {
+        $user = auth()->user();
+
         // Ambil kata kunci dari permintaan pengguna
         $search = $request->input('search');
 
@@ -24,7 +26,7 @@ class JadwalController extends Controller
         }
 
         // Kirimkan data jadwal ke view
-        return view('jadwal.index', compact('jadwal'));
+        return view('jadwal.index', compact('jadwal', 'user'));
     }
 
 
