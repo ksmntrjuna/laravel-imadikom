@@ -12,7 +12,6 @@ class PengurusController extends Controller
     // Menampilkan semua pengurus
     public function index(Request $request)
     {
-        $user = auth()->user();
         // Ambil parameter pencarian dari permintaan pengguna
         $search = $request->input('search');
 
@@ -31,7 +30,7 @@ class PengurusController extends Controller
             $pengurus = Pengurus::all();
         }
         
-        return view('pengurus.index', compact('pengurus', 'user'));
+        return view('pengurus.index', compact('pengurus'));
     }
 
     // Menampilkan form untuk menambahkan pengurus baru

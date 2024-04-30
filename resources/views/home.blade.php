@@ -12,6 +12,10 @@
     @extends('layout')
 </body>
     @section('content')
+    @auth
+    <!-- Menampilkan pesan selamat datang hanya jika pengguna telah login -->
+    <h2 class="text-xl font-semibold">Selamat Datang, {{ $user->name }}!</h2>
+    @endauth
     <div class="relative">
     <!-- Background Image -->
     <img src="{{asset('images/slide2.jpg')}}" class="absolute inset-0 w-full h-full object-cover z-0 grayscale opacity-80" alt="Background Image">

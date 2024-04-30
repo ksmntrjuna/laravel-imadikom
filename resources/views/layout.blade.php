@@ -18,13 +18,6 @@
                 <img src="{{ asset('images/logo-putih.png') }}" alt="Logo-putih" class="h-8">
             </div>
 
-            @auth
-            <!-- Menampilkan pesan selamat datang hanya jika pengguna telah login -->
-            <h2 class="text-xl font-semibold">Selamat Datang, {{ $user->name }}!</h2>
-            @endauth
-
-
-
             <!-- Menu -->
             <ul class="hidden md:flex items-center space-x-4 z-10">
                 <li class="{{ request()->routeIs('home') ? 'bg-orange-500 rounded-lg' : '' }}">

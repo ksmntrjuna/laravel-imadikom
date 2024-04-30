@@ -11,8 +11,6 @@ class DokumentasiController extends Controller
 {
     public function index(Request $request)
     {
-        $user = auth()->user();
-
         // Ambil kata kunci dari permintaan
         $search = $request->input('search');
 
@@ -28,7 +26,7 @@ class DokumentasiController extends Controller
             $dokumentasi = Dokumentasi::all();
         }
 
-        return view('dokumentasi.index', compact('dokumentasi', 'user'));
+        return view('dokumentasi.index', compact('dokumentasi'));
     }
 
 
