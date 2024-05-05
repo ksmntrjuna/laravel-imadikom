@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('jadwal', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->date('tanggal');
-            $table->time('jam');
+            $table->string('nama_kegiatan');
+            $table->dateTime('mulai');
+            $table->dateTime('selesai');
             $table->string('tempat');
+            $table->enum('status', ['belum dilaksanakan', 'sedang berlangsung', 'selesai']);
             $table->timestamps();
         });
     }

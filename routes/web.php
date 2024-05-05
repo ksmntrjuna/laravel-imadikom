@@ -4,9 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DivisiController;
-use App\Http\Controllers\DokumentasiController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\ProkerController;
 use App\Http\Controllers\PengurusController;
+use App\Http\Controllers\DokumentasiController;
 
 
 
@@ -28,14 +29,8 @@ use App\Http\Controllers\PengurusController;
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-
 // Divisi
-Route::get('/divisi/bph', [DivisiController::class, 'bph'])->name('divisi.bph');
-Route::get('/divisi/psdm', [DivisiController::class, 'psdm'])->name('divisi.psdm');
-Route::get('/divisi/sosma', [DivisiController::class, 'sosma'])->name('divisi.sosma');
-Route::get('/divisi/kwu', [DivisiController::class, 'kwu'])->name('divisi.kwu');
-Route::get('/divisi/humas', [DivisiController::class, 'humas'])->name('divisi.humas');
-Route::get('/divisi/multimedia', [DivisiController::class, 'multimedia'])->name('divisi.multimedia');
+Route::get('/divisi', [DivisiController::class, 'index'])->name('divisi');
 
 // Kepengurusan
 Route::get('/pengurus', [PengurusController::class, 'index'])->name('pengurus.index');
@@ -45,13 +40,11 @@ Route::get('/pengurus/{pengurus}/edit', [PengurusController::class, 'edit'])->na
 Route::put('/pengurus/{pengurus}', [PengurusController::class, 'update'])->name('pengurus.update');
 Route::delete('/pengurus/{pengurus}', [PengurusController::class, 'destroy'])->name('pengurus.destroy');
 
+// Proker
+Route::resource('proker', ProkerController::class);
+
 // Jadwal
-Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal.index');
-Route::get('/jadwal/create', [JadwalController::class, 'create'])->name('jadwal.create');
-Route::post('/jadwal', [JadwalController::class, 'store'])->name('jadwal.store');
-Route::get('/jadwal/{jadwal}/edit', [JadwalController::class, 'edit'])->name('jadwal.edit');
-Route::put('/jadwal/{jadwal}', [JadwalController::class, 'update'])->name('jadwal.update');
-Route::delete('/jadwal/{jadwal}', [JadwalController::class, 'destroy'])->name('jadwal.destroy');
+Route::resource('jadwal', JadwalController::class);
 
 // Dokumentasi
 Route::get('/dokumentasi', [DokumentasiController::class, 'index'])->name('dokumentasi.index');

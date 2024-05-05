@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LAYOUT</title>
     <!-- Mengimpor Tailwind CSS -->
+    @vite('resources/css/app.css')
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -23,23 +24,19 @@
                 <li class="{{ request()->routeIs('home') ? 'bg-orange-500 rounded-lg' : '' }}">
                     <a href="{{ route('home') }}" class="block px-4 py-2 {{ request()->routeIs('home') ? 'text-white' : 'hover:text-orange-300' }}">Home</a>
                 </li>
-
-                <li id="dropdown-button" class="relative group {{ request()->routeIs('divisi.*') ? 'bg-orange-500 rounded-lg' : '' }}">
-                    <a href="#" class="block px-4 py-2 {{ request()->routeIs('divisi.*') ? 'text-white' : 'hover:text-orange-300' }}">
+                <li class="{{ request()->routeIs('divisi') ? 'bg-orange-500 rounded-lg' : '' }}">
+                    <a href="{{ route('divisi') }}" class="block px-4 py-2 {{ request()->routeIs('divisi') ? 'text-white' : 'hover:text-orange-300' }}">
                         Divisi
                     </a>
-                    <div class="dropdown-content absolute hidden group-hover:block duration-500 bg-purple-700 text-white p-2 mt-1 rounded shadow-lg">
-                        <a href="{{ route('divisi.bph') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.bph') ? 'text-white' : 'text-gray-200' }}">Divisi BPH</a>
-                        <a href="{{ route('divisi.psdm') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.psdm') ? 'text-white' : 'text-gray-200' }}">Divisi PSDM</a>
-                        <a href="{{ route('divisi.sosma') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.sosma') ? 'text-white' : 'text-gray-200' }}">Divisi Sosma</a>
-                        <a href="{{ route('divisi.kwu') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.kwu') ? 'text-white' : 'text-gray-200' }}">Divisi KWU</a>
-                        <a href="{{ route('divisi.humas') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.humas') ? 'text-white' : 'text-gray-200' }}">Divisi Humas</a>
-                        <a href="{{ route('divisi.multimedia') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.multimedia') ? 'text-white' : 'text-gray-200' }}">Divisi Multimedia</a>
-                    </div>
                 </li>
                 <li class="{{ request()->routeIs('pengurus.index') ? 'bg-orange-500 rounded-lg' : '' }}">
                     <a href="{{ route('pengurus.index') }}" class="block px-4 py-2 {{ request()->routeIs('pengurus.index') ? 'text-white' : 'hover:text-orange-300' }}">
                         Kepengurusan
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('proker.index') ? 'bg-orange-500 rounded-lg' : '' }}">
+                    <a href="{{ route('proker.index') }}" class="block px-4 py-2 {{ request()->routeIs('proker.index') ? 'text-white' : 'hover:text-orange-300' }}">
+                        Proker
                     </a>
                 </li>
                 <li class="{{ request()->routeIs('jadwal.index') ? 'bg-orange-500 rounded-lg' : '' }}">
@@ -85,21 +82,9 @@
                     Home
                 </a>
             </li>
-            <li class="{{ request()->routeIs('divisi.*') ? 'bg-orange-500' : '' }}">
-                <a href="#" class="block px-4 py-2 flex justify-between items-center {{ request()->routeIs('divisi.*') ? 'text-white' : 'hover:text-orange-300' }}" onclick="toggleDivisiDropdown(event)">
-                    Divisi
-                    <i class="fas fa-chevron-down"></i>
-                </a>
-                <ul id="divisi-dropdown" class="hidden bg-purple-700 text-white p-2 mt-1">
-                    <a href="{{ route('divisi.bph') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.bph') ? 'text-white' : 'text-gray-200' }}">Divisi BPH</a>
-                    <a href="{{ route('divisi.psdm') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.psdm') ? 'text-white' : 'text-gray-200' }}">Divisi PSDM</a>
-                    <a href="{{ route('divisi.sosma') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.sosma') ? 'text-white' : 'text-gray-200' }}">Divisi Sosma</a>
-                    <a href="{{ route('divisi.kwu') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.kwu') ? 'text-white' : 'text-gray-200' }}">Divisi KWU</a>
-                    <a href="{{ route('divisi.humas') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.humas') ? 'text-white' : 'text-gray-200' }}">Divisi Humas</a>
-                    <a href="{{ route('divisi.multimedia') }}" class="block px-4 py-2 hover:bg-orange-500 {{ request()->routeIs('divisi.multimedia') ? 'text-white' : 'text-gray-200' }}">Divisi Multimedia</a>
-                </ul>
+            <li class="{{ request()->routeIs('divisi') ? 'bg-orange-500 rounded-lg' : '' }}">
+                <a href="{{ route('divisi') }}" class="block px-4 py-2 {{ request()->routeIs('divisi') ? 'text-white' : 'hover:text-orange-300' }}">Divisi</a>
             </li>
-
             <li class="{{ request()->routeIs('pengurus.index') ? 'bg-orange-500' : '' }}">
                 <a href="{{ route('pengurus.index') }}" class="block px-4 py-2 {{ request()->routeIs('pengurus.index') ? 'text-white' : 'hover:text-orange-300' }}">
                     Kepengurusan
@@ -148,27 +133,11 @@
                     <i class="far fa-envelope"></i> kipamikom@gmail.com
                 </a>
             </div>
+            <p class="text-center text-sm">© 2024 IMADIKOM. by KSMNTR.</p>
+
         </div>
     </footer>
 
-    <!-- Skrip JavaScript untuk menangani dropdown -->
-    <script>
-        // Mengambil semua elemen dengan kelas 'dropbtn'
-        var dropdowns = document.querySelectorAll('.dropbtn');
-
-        // Loop melalui setiap elemen dropbtn
-        dropdowns.forEach(function(dropdown) {
-            // Menambahkan event listener untuk menampilkan dropdown saat tombol diklik
-            dropdown.addEventListener('click', function() {
-                var content = this.nextElementSibling;
-                if (content.classList.contains('hidden')) {
-                    content.classList.remove('hidden');
-                } else {
-                    content.classList.add('hidden');
-                }
-            });
-        });
-    </script>
 
     <!-- Script for Mobile Menu Toggle -->
     <script>
@@ -186,11 +155,5 @@
         });
     </script>
 </body>
-
-<footer class="bg-orange-500 text-white sticky bottom-0 p-4">
-    <div class="flex flex-col items-center bg-orange-500 text-white ">
-        <p class="text-center text-sm">© 2024 IMADIKOM. by KSMNTR.</p>
-    </div>
-</footer>
 
 </html>
