@@ -14,6 +14,8 @@
     <div class="bg-green-200 text-green-800 px-4 py-2 rounded mb-4">{{ session('success') }}</div>
     @endif
 
+    @foreach($prokers as $divisi_id => $groupedProkers)
+    <h2 class="text-xl font-bold my-4">{{ $groupedProkers->first()->divisi->nama_divisi ?? 'Divisi Tidak Diketahui' }}</h2>
     <div class="overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-200">
@@ -21,19 +23,17 @@
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Deskripsi</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Divisi</th>
                     @auth
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                     @endauth
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-                @foreach($prokers as $index => $proker)
+                @foreach($groupedProkers as $index => $proker)
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $index + 1 }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $proker->nama }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $proker->deskripsi }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $proker->divisi->nama_divisi ?? 'N/A' }}</td>
                     @auth
                     <!-- Tampilkan tombol aksi hanya untuk pengguna yang login -->
                     <td class="px-6 py-4 whitespace-nowrap">
@@ -50,5 +50,6 @@
             </tbody>
         </table>
     </div>
+    @endforeach
 </div>
 @endsection

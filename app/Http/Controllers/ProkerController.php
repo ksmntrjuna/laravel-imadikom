@@ -13,9 +13,13 @@ class ProkerController extends Controller
      */
     public function index()
     {
-        $prokers = Proker::all();
+        // Ambil semua proker dan kelompokkan berdasarkan divisi
+        $prokers = Proker::with('divisi')->get()->groupBy('divisi_id');
+
+        // Kirim prokers yang dikelompokkan ke view
         return view('proker.index', compact('prokers'));
     }
+
 
     /**
      * Menampilkan formulir untuk membuat proker baru.
@@ -31,20 +35,33 @@ class ProkerController extends Controller
      */
     public function store(Request $request)
     {
+        // Validasi input untuk divisi_id
         $request->validate([
-            'nama' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
             'divisi_id' => 'required|exists:divisi,id',
+            'prokers.nama' => 'required|array',
+            'prokers.nama.*' => 'required|string|max:255',
+            'prokers.deskripsi' => 'required|array',
+            'prokers.deskripsi.*' => 'required|string',
         ]);
 
-        Proker::create([
-            'nama' => $request->nama,
-            'deskripsi' => $request->deskripsi,
-            'divisi_id' => $request->divisi_id,
-        ]);
+        // Ambil divisi_id dari permintaan
+        $divisi_id = $request->input('divisi_id');
+
+        // Loop melalui setiap nama proker dan deskripsi
+        foreach ($request->input('prokers.nama') as $index => $nama) {
+            $deskripsi = $request->input('prokers.deskripsi')[$index];
+
+            // Buat setiap proker baru dan simpan ke database
+            Proker::create([
+                'nama' => $nama,
+                'deskripsi' => $deskripsi,
+                'divisi_id' => $divisi_id,
+            ]);
+        }
 
         return redirect()->route('proker.index')->with('success', 'Proker berhasil dibuat.');
     }
+
 
     /**
      * Menampilkan detail proker tertentu.

@@ -43,7 +43,15 @@
                     <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($jadwal->mulai)->format('d-m-Y H:i') }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($jadwal->selesai)->format('d-m-Y H:i') }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $jadwal->tempat }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $jadwal->status }}</td>
+                    <!-- Tambahkan kondisi warna untuk kolom status -->
+                    <td class="px-6 py-4 whitespace-nowrap 
+            @if($jadwal->status === 'belum dilaksanakan')
+                text-red-500
+            @elseif($jadwal->status === 'selesai')
+                text-green-500
+            @endif">
+                        {{ $jadwal->status }}
+                    </td>
                     @auth
                     <td class="px-6 py-4 whitespace-nowrap">
                         <a href="{{ route('jadwal.edit', $jadwal->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>

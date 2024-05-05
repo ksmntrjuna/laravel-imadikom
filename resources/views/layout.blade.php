@@ -31,7 +31,7 @@
                 </li>
                 <li class="{{ request()->routeIs('pengurus.index') ? 'bg-orange-500 rounded-lg' : '' }}">
                     <a href="{{ route('pengurus.index') }}" class="block px-4 py-2 {{ request()->routeIs('pengurus.index') ? 'text-white' : 'hover:text-orange-300' }}">
-                        Kepengurusan
+                        Pengurus
                     </a>
                 </li>
                 <li class="{{ request()->routeIs('proker.index') ? 'bg-orange-500 rounded-lg' : '' }}">
@@ -87,7 +87,7 @@
             </li>
             <li class="{{ request()->routeIs('pengurus.index') ? 'bg-orange-500' : '' }}">
                 <a href="{{ route('pengurus.index') }}" class="block px-4 py-2 {{ request()->routeIs('pengurus.index') ? 'text-white' : 'hover:text-orange-300' }}">
-                    Kepengurusan
+                    Pengurus
                 </a>
             </li>
             <li class="{{ request()->routeIs('jadwal.index') ? 'bg-orange-500' : '' }}">
