@@ -9,12 +9,13 @@
     <a href="{{ route('jadwal.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block">Buat Jadwal Baru</a>
     @endauth
 
-    <!-- Search bar -->
-    <form action="{{ route('jadwal.index') }}" method="GET" class="mb-4">
-        <input type="text" name="search" placeholder="Cari jadwal..." value="{{ old('search', $search) }}" class="border px-4 py-2 rounded mr-2">
+    <!-- Formulir Pencarian -->
+    <form method="GET" action="{{ route('jadwal.index') }}" class="mb-4" id="filterForm">
+        <input type="text" name="search" placeholder="Cari jadwal..." value="{{ request('search') }}" class="border px-4 py-2 rounded mr-2">
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Cari</button>
 
         <!-- Filter Status -->
-        <select name="status" class="border px-4 py-2 rounded mr-2">
+        <select name="status" class="border px-4 py-2 rounded mr-2" id="statusFilter" onchange="filterByStatus()">
             <option value="">--Pilih Status--</option>
             <option value="belum dilaksanakan" {{ request('status') == 'belum dilaksanakan' ? 'selected' : '' }}>Belum Dilaksanakan</option>
             <option value="sedang berlangsung" {{ request('status') == 'sedang berlangsung' ? 'selected' : '' }}>Sedang Berlangsung</option>
@@ -22,16 +23,13 @@
         </select>
 
         <!-- Filter Tahun -->
-        <select name="tahun" class="border px-4 py-2 rounded mr-2">
+        <select name="tahun" class="border px-4 py-2 rounded mr-2" onchange="filterByYear()">
             <option value="">--Pilih Tahun--</option>
             @foreach(range(date('Y'), date('Y') - 10) as $year)
             <option value="{{ $year }}" {{ request('tahun') == $year ? 'selected' : '' }}>{{ $year }}</option>
             @endforeach
         </select>
-
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Cari</button>
     </form>
-
 
     @if(session('success'))
     <!-- Tampilkan pesan sukses jika ada -->
@@ -87,3 +85,20 @@
     </div>
 </div>
 @endsection
+
+<!-- JavaScript untuk filter -->
+<script>
+    function filterByYear() {
+        // Ambil form filter
+        const form = document.getElementById('filterForm');
+        // Kirim permintaan dengan data form
+        form.submit();
+    }
+
+    function filterByStatus() {
+        // Ambil form filter
+        const form = document.getElementById('filterForm');
+        // Kirim permintaan ke server
+        form.submit();
+    }
+</script>

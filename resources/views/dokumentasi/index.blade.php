@@ -77,9 +77,17 @@
 @guest
 <div class="container mx-auto px-4 mt-6">
     <!-- Formulir Pencarian -->
-    <form method="GET" action="{{ route('dokumentasi.index') }}" class="mb-4">
+    <form method="GET" action="{{ route('dokumentasi.index') }}" id="filterForm" class="mb-4">
         <input type="text" name="search" placeholder="Cari..." class="border px-4 py-2 rounded" value="{{ request('search') }}">
         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Cari</button>
+
+        <!-- Filter Tahun -->
+        <select name="tahun" id="tahunFilter" class="border px-4 py-2 rounded mr-2" onchange="filterByYear()">
+            <option value="">--Pilih Tahun--</option>
+            @foreach(range(date('Y'), date('Y') - 10) as $year)
+            <option value="{{ $year }}" {{ request('tahun') == $year ? 'selected' : '' }}>{{ $year }}</option>
+            @endforeach
+        </select>
     </form>
     @foreach($dokumentasi as $d)
     <div class="bg-white p-6 rounded-lg shadow-lg mb-6 text-center">
@@ -92,6 +100,7 @@
     @endforeach
 </div>
 @endguest
+@endsection
 
 <!-- JavaScript untuk filter tahun -->
 <script>
@@ -102,5 +111,3 @@
         form.submit();
     }
 </script>
-
-@endsection

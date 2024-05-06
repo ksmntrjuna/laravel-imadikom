@@ -13,16 +13,21 @@
     @endauth
 
     <!-- Formulir Pencarian -->
-    <form method="GET" action="{{ route('pengurus.index') }}" class="mb-4">
+    <form method="GET" action="{{ route('pengurus.index') }}" class="mb-4" id="filterForm">
         <input type="text" name="search" placeholder="Cari Pengurus..." class="border px-4 py-2 rounded" value="{{ request('search') }}">
-        <select name="tahun" class="border px-4 py-2 rounded">
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Cari</button>
+
+        <!-- Filter Tahun -->
+        <select name="tahun" class="border px-4 py-2 rounded mr-2" id="tahunFilter" onchange="filterByYear()">
             <option value="">--Pilih Tahun--</option>
             @foreach(range(date('Y'), date('Y') - 10) as $year)
             <option value="{{ $year }}" {{ request('tahun') == $year ? 'selected' : '' }}>{{ $year }}</option>
             @endforeach
         </select>
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Cari</button>
     </form>
+
+
+
 
 
     <div class="overflow-x-auto">
@@ -70,3 +75,13 @@
     </div>
 </div>
 @endsection
+
+<!-- JavaScript untuk filter tahun -->
+<script>
+    function filterByYear() {
+        // Ambil form filter
+        const form = document.getElementById('filterForm');
+        // Submit form
+        form.submit();
+    }
+</script>
