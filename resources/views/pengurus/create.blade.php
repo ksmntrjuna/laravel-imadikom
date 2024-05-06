@@ -9,7 +9,8 @@
         <a href="{{ route('pengurus.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 mb-4 inline-block">Kembali</a>
 
         <!-- Form Tambah Pengurus -->
-        <form action="{{ route('pengurus.store') }}" method="POST">
+        <!-- Pastikan formulir memiliki atribut enctype="multipart/form-data" untuk memungkinkan unggahan file -->
+        <form action="{{ route('pengurus.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <!-- Nama -->
@@ -36,6 +37,43 @@
                     <option value="{{ $jab->id }}">{{ $jab->nama_jabatan }}</option>
                     @endforeach
                 </select>
+            </div>
+
+            <!-- Nomor Identitas -->
+            <div class="mb-4">
+                <label for="nim" class="block font-semibold mb-2">Nomor Identitas:</label>
+                <input type="text" class="form-input w-full border border-gray-300 p-2 rounded" id="nim" name="nim">
+            </div>
+
+            <!-- Alamat -->
+            <div class="mb-4">
+                <label for="alamat" class="block font-semibold mb-2">Alamat:</label>
+                <textarea class="form-textarea w-full border border-gray-300 p-2 rounded" id="alamat" name="alamat"></textarea>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-4">
+                <label for="email" class="block font-semibold mb-2">Email:</label>
+                <input type="email" class="form-input w-full border border-gray-300 p-2 rounded" id="email" name="email" required>
+            </div>
+
+            <!-- Telepon -->
+            <div class="mb-4">
+                <label for="telp" class="block font-semibold mb-2">Telepon:</label>
+                <input type="text" class="form-input w-full border border-gray-300 p-2 rounded" id="telp" name="telp">
+            </div>
+
+            <!-- Kelas -->
+            <div class="mb-4">
+                <label for="kelas" class="block font-semibold mb-2">Kelas:</label>
+                <input type="text" class="form-input w-full border border-gray-300 p-2 rounded" id="kelas" name="kelas">
+            </div>
+
+            <!-- Foto -->
+            <div class="mb-4">
+                <label for="foto" class="block font-semibold mb-2">Foto:</label>
+                <!-- Input type file untuk unggahan foto -->
+                <input type="file" class="form-input w-full border border-gray-300 p-2 rounded" id="foto" name="foto">
             </div>
 
             <!-- Tombol Simpan -->

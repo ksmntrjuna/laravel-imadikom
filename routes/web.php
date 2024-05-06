@@ -39,6 +39,9 @@ Route::post('/pengurus', [PengurusController::class, 'store'])->name('pengurus.s
 Route::get('/pengurus/{pengurus}/edit', [PengurusController::class, 'edit'])->name('pengurus.edit');
 Route::put('/pengurus/{pengurus}', [PengurusController::class, 'update'])->name('pengurus.update');
 Route::delete('/pengurus/{pengurus}', [PengurusController::class, 'destroy'])->name('pengurus.destroy');
+Route::get('/pengurus/{pengurus}', [PengurusController::class, 'show'])->name('pengurus.show');
+
+
 
 // Proker
 Route::resource('proker', ProkerController::class);

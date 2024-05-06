@@ -45,16 +45,38 @@ class PengurusController extends Controller
     // Menyimpan pengurus baru ke dalam database
     public function store(Request $request)
     {
+        // Validasi data yang diterima dari formulir
         $request->validate([
             'nama' => 'required',
             'divisi_id' => 'required',
             'jabatan_id' => 'required',
+            'nim' => 'required', // Tambahkan validasi untuk kolom-kolom yang diperlukan
+            'alamat' => 'required',
+            'email' => 'required|email|unique:pengurus,email',
+            'telp' => 'required',
+            'kelas' => 'required',
+            'foto' => 'nullable|image|max:2048', // Validasi file foto
         ]);
 
-        Pengurus::create($request->all());
+        // Inisialisasi array data pengurus dengan data yang diterima
+        $data = $request->all();
 
+        // Jika ada file gambar yang diunggah
+        if ($request->hasFile('foto')) {
+            // Simpan file gambar ke direktori 'public/storage/pengurus'
+            $filePath = $request->file('foto')->store('pengurus', 'public');
+
+            // Simpan jalur file gambar ke array data pengurus
+            $data['foto'] = $filePath;
+        }
+
+        // Simpan data pengurus ke database
+        Pengurus::create($data);
+
+        // Redirect ke halaman daftar pengurus dengan pesan sukses
         return redirect()->route('pengurus.index')->with('success', 'Pengurus berhasil ditambahkan.');
     }
+
 
     // Menampilkan form untuk mengedit pengurus
     public function edit(Pengurus $pengurus)
@@ -68,16 +90,50 @@ class PengurusController extends Controller
     // Menyimpan perubahan pada pengurus ke dalam database
     public function update(Request $request, Pengurus $pengurus)
     {
+        // Validasi data yang diterima dari formulir
         $request->validate([
             'nama' => 'required',
             'divisi_id' => 'required',
             'jabatan_id' => 'required',
+            'nim' => 'required', // Tambahkan validasi untuk kolom-kolom yang diperlukan
+            'alamat' => 'required',
+            'email' => 'required|email|unique:pengurus,email,' . $pengurus->id, // Pastikan email unik untuk pengurus lain
+            'telp' => 'required',
+            'kelas' => 'required',
+            'foto' => 'nullable|image|max:2048', // Validasi file foto
         ]);
 
-        $pengurus->update($request->all());
+        // Inisialisasi array data dengan data yang diterima
+        $data = $request->all();
 
+        // Menangani unggahan foto jika ada
+        if ($request->hasFile('foto')) {
+            // Simpan file gambar baru
+            $filePath = $request->file('foto')->store('pengurus', 'public');
+            // Simpan jalur file gambar ke data
+            $data['foto'] = $filePath;
+
+            // Hapus file gambar lama jika ada
+            if ($pengurus->foto) {
+                \Storage::disk('public')->delete($pengurus->foto);
+            }
+        }
+
+        // Perbarui data pengurus di database
+        $pengurus->update($data);
+
+        // Redirect ke halaman daftar pengurus dengan pesan sukses
         return redirect()->route('pengurus.index')->with('success', 'Pengurus berhasil diperbarui.');
     }
+
+
+    public function show(Pengurus $pengurus)
+    {
+        // Kirim data pengurus ke view 'pengurus.show'
+        return view('pengurus.show', compact('pengurus'));
+    }
+
+
 
     // Menghapus pengurus dari database
     public function destroy(Pengurus $pengurus)

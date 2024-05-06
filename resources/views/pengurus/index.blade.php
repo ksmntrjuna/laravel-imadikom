@@ -14,7 +14,7 @@
 
     @section('content')
     <div class="container mx-auto px-4">
-        <h1 class="text-4xl font-bold mb-2 text-center">Daftar Pengurus IMADIKOM</h1>   
+        <h1 class="text-4xl font-bold mb-2 text-center">Daftar Pengurus IMADIKOM</h1>
 
         @auth
         <!-- Display the "Tambah Pengurus" button only for authenticated users -->
@@ -49,7 +49,12 @@
 
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $index + 1 }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $p->nama }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <a href="{{ route('pengurus.show', $p->id) }}" class="text-blue-600 hover:underline">
+                                {{ $p->nama }}
+                            </a>
+                        </td>
+
                         <td class="px-6 py-4 whitespace-nowrap">{{ $p->divisi->nama_divisi }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $p->jabatan->nama_jabatan }}</td>
                         @auth

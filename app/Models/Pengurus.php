@@ -11,7 +11,17 @@ class Pengurus extends Model
 {
     use HasFactory;
     protected $table = 'Pengurus';
-    protected $fillable = ['nama', 'divisi_id', 'jabatan_id'];
+    protected $fillable = [
+        'nama',
+        'divisi_id',
+        'jabatan_id',
+        'nim', 
+        'alamat', 
+        'email', 
+        'telp',
+        'kelas',
+        'foto',
+    ];
 
     public function divisi()
     {

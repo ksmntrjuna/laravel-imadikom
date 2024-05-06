@@ -14,6 +14,12 @@ return new class extends Migration
         Schema::create('pengurus', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->string('nim');
+            $table->string('alamat');
+            $table->string('email')->unique(); // Tambahkan batasan unik pada email
+            $table->string('telp');
+            $table->string('kelas');
+            $table->string('foto'); 
             $table->unsignedBigInteger('divisi_id'); // Menggunakan unsignedBigInteger karena ini adalah kunci asing
             $table->unsignedBigInteger('jabatan_id'); // Menggunakan unsignedBigInteger karena ini adalah kunci asing
             $table->timestamps();
