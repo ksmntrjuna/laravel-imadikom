@@ -1,8 +1,8 @@
 @extends('layout')
 
 @section('content')
-<div class="container mx-auto px-4">
-    <h1 class="text-4xl font-bold mb-2 text-center">Daftar Jadwal IMADIKOM</h1>
+<div class="container mx-auto px-4 mt-6 mb-6">
+    <h1 class="text-4xl font-bold mb-2 text-center font-mono">Daftar Jadwal IMADIKOM</h1>
 
     @auth
     <!-- Tampilkan tombol "Buat Jadwal Baru" hanya untuk pengguna yang login -->
@@ -11,9 +11,27 @@
 
     <!-- Search bar -->
     <form action="{{ route('jadwal.index') }}" method="GET" class="mb-4">
-        <input type="text" name="search" placeholder="Cari jadwal..." value="{{ old('search', $search) }}" class="border px-2 py-1 rounded mr-2">
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">Cari</button>
+        <input type="text" name="search" placeholder="Cari jadwal..." value="{{ old('search', $search) }}" class="border px-4 py-2 rounded mr-2">
+
+        <!-- Filter Status -->
+        <select name="status" class="border px-4 py-2 rounded mr-2">
+            <option value="">--Pilih Status--</option>
+            <option value="belum dilaksanakan" {{ request('status') == 'belum dilaksanakan' ? 'selected' : '' }}>Belum Dilaksanakan</option>
+            <option value="sedang berlangsung" {{ request('status') == 'sedang berlangsung' ? 'selected' : '' }}>Sedang Berlangsung</option>
+            <option value="selesai" {{ request('status') == 'selesai' ? 'selected' : '' }}>Selesai</option>
+        </select>
+
+        <!-- Filter Tahun -->
+        <select name="tahun" class="border px-4 py-2 rounded mr-2">
+            <option value="">--Pilih Tahun--</option>
+            @foreach(range(date('Y'), date('Y') - 10) as $year)
+            <option value="{{ $year }}" {{ request('tahun') == $year ? 'selected' : '' }}>{{ $year }}</option>
+            @endforeach
+        </select>
+
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Cari</button>
     </form>
+
 
     @if(session('success'))
     <!-- Tampilkan pesan sukses jika ada -->

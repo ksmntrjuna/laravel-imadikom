@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mx-auto px-4 py-6">
-    <h1 class="text-3xl font-bold mb-4">Detail Pengurus</h1>
+    <h1 class="text-3xl font-bold mb-4 font-mono">Detail Pengurus</h1>
 
     <!-- Card untuk menampilkan informasi detail pengurus -->
     <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col md:flex-row items-center gap-6">
@@ -19,7 +19,7 @@
 
         <!-- Kolom kanan: Informasi pengurus -->
         <div class="flex-grow mt-4 md:mt-0 md:ml-6">
-            <p class="text-xl font-semibold mb-2">{{ $pengurus->nama }}</p>
+            <p class="mb-2"><strong>Nama:</strong> {{ $pengurus->nama }}</p>
             <p class="mb-2"><strong>Divisi:</strong> {{ $pengurus->divisi->nama_divisi }}</p>
             <p class="mb-2"><strong>Jabatan:</strong> {{ $pengurus->jabatan->nama_jabatan }}</p>
             <p class="mb-2"><strong>NIM:</strong> {{ $pengurus->nim }}</p>

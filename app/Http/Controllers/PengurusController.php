@@ -14,24 +14,31 @@ class PengurusController extends Controller
     {
         // Ambil parameter pencarian dari permintaan pengguna
         $search = $request->input('search');
+        $tahun = $request->input('tahun');
 
         // Jika ada parameter pencarian, gunakan untuk melakukan pencarian
+        $query = Pengurus::query();
+
         if ($search) {
-            $pengurus = Pengurus::where('nama', 'like', '%' . $search . '%')
-                ->orWhereHas('divisi', function ($query) use ($search) {
-                    $query->where('nama_divisi', 'like', '%' . $search . '%');
-                })
-                ->orWhereHas('jabatan', function ($query) use ($search) {
-                    $query->where('nama_jabatan', 'like', '%' . $search . '%');
-                })
-                ->get();
-        } else {
-            // Jika tidak ada parameter pencarian, ambil semua pengurus
-            $pengurus = Pengurus::all();
+            $query->where('nama', 'like', '%' . $search . '%')
+            ->orWhereHas('divisi', function ($query) use ($search) {
+                $query->where('nama_divisi', 'like', '%' . $search . '%');
+            })
+            ->orWhereHas('jabatan', function ($query) use ($search) {
+                $query->where('nama_jabatan', 'like', '%' . $search . '%');
+            });
         }
-        
+
+        if ($tahun) {
+            $query->whereYear('created_at', '=', $tahun); // Filter berdasarkan tahun
+        }
+
+        // Dapatkan data dengan pagination
+        $pengurus = $query->paginate(15);
+
         return view('pengurus.index', compact('pengurus'));
     }
+
 
     // Menampilkan form untuk menambahkan pengurus baru
     public function create()

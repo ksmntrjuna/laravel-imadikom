@@ -4,7 +4,7 @@
 <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 gap-6 md:grid-cols-1 lg:grid-cols-1">
         <!-- DIVISI BPH -->
-        <div class="bg-white rounded-lg shadow-md p-6">
+        <div class="bg-white rounded-lg shadow-md p-6 mt-6"> <!-- Tambahkan kelas mt-6 di sini -->
             <h1 class="text-3xl font-bold mb-4 text-center">DIVISI BPH</h1>
             <img src="{{ asset('images/humas.jpg') }}" alt="Divisi Humas" class="w-1/3 h-auto mb-4 mx-auto rounded-lg">
             <p class="mb-6">Divisi Badan Pengurus Harian (BPH) adalah divisi yang melakukan fungsi kontrol, koordinasi, pengembangan, dan peningkatan sistem manajemen administrasi dan keuangan serta komunikasi dalam membangun hubungan internal dan eksternal.</p>
@@ -16,7 +16,6 @@
             <img src="{{ asset('images/humas.jpg') }}" alt="Divisi Humas" class="w-1/3 h-auto mb-4 mx-auto rounded-lg">
             <p class="mb-6">Divisi Humas merupakan divisi yang menjadi fasilitator, membangun komunikasi yang aktif dan menjalin kerja sama dengan pihak internal maupun eksternal.</p>
         </div>
-
 
         <!-- DIVISI KWU -->
         <div class="bg-white rounded-lg shadow-md p-6">
@@ -40,7 +39,7 @@
         </div>
 
         <!-- DIVISI SOSMA -->
-        <div class="bg-white rounded-lg shadow-md p-6">
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
             <h1 class="text-3xl font-bold mb-4 text-center">DIVISI SOSMA</h1>
             <img src="{{ asset('images/humas.jpg') }}" alt="Divisi Humas" class="w-1/3 h-auto mb-4 mx-auto rounded-lg">
             <p class="mb-6">Divisi Sosial Masyarakat (Sosmas) merupakan divisi yang bertanggung jawab dalam kegiatan di bidang sosial kemasyarakatan IMADIKOM. Divisi ini bertujuan untuk membentuk citra IMADIKOM yang peduli antar sesama.</p>

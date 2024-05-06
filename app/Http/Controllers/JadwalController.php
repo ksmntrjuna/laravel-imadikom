@@ -12,22 +12,38 @@ class JadwalController extends Controller
      */
     public function index(Request $request)
     {
-        // Ambil kata kunci dari request jika ada
+        // Ambil input pencarian, status, dan tahun
         $search = $request->input('search');
+        $status = $request->input('status');
+        $tahun = $request->input('tahun');
 
-        // Jika ada kata kunci, lakukan pencarian
+        // Inisialisasi query untuk Jadwal
+        $query = Jadwal::query();
+
+        // Tambahkan kondisi pencarian berdasarkan nama kegiatan dan tempat
         if ($search) {
-            $jadwals = Jadwal::where('nama_kegiatan', 'LIKE', '%' . $search . '%')
-                ->orWhere('tempat', 'LIKE', '%' . $search . '%')
-                ->get();
-        } else {
-            // Jika tidak ada kata kunci, ambil semua data jadwal
-            $jadwals = Jadwal::all();
+            $query->where('nama_kegiatan', 'like', '%' . $search . '%')
+                ->orWhere('tempat', 'like', '%' . $search . '%');
         }
 
-        // Kembalikan view dengan data jadwals
+        // Tambahkan kondisi filter berdasarkan status
+        if ($status) {
+            $query->where('status', $status);
+        }
+
+        // Tambahkan kondisi filter berdasarkan tahun pada kolom 'mulai' dan 'selesai'
+        if ($tahun) {
+            $query->whereYear('mulai', $tahun)
+                ->orWhereYear('selesai', $tahun);
+        }
+
+        // Dapatkan data jadwals dengan pagination
+        $jadwals = $query->paginate(15); // Sesuaikan angka 15 sesuai kebutuhan
+
+        // Kirim data ke view
         return view('jadwal.index', compact('jadwals', 'search'));
     }
+
 
 
     /**

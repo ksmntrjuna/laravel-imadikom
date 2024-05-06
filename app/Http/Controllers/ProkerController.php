@@ -11,14 +11,32 @@ class ProkerController extends Controller
     /**
      * Menampilkan daftar proker.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Ambil semua proker dan kelompokkan berdasarkan divisi
-        $prokers = Proker::with('divisi')->get()->groupBy('divisi_id');
+        // Ambil input pencarian dan filter tahun
+        $search = $request->input('search');
+        $tahun = $request->input('tahun');
 
-        // Kirim prokers yang dikelompokkan ke view
+        // Inisialisasi query untuk Proker
+        $query = Proker::with('divisi');
+
+        // Tambahkan kondisi pencarian berdasarkan nama proker
+        if ($search) {
+            $query->where('nama', 'like', '%' . $search . '%');
+        }
+
+        // Tambahkan kondisi filter berdasarkan tahun jika tersedia
+        if ($tahun) {
+            $query->whereYear('created_at', $tahun);
+        }
+
+        // Ambil proker yang dikelompokkan berdasarkan divisi_id
+        $prokers = $query->get()->groupBy('divisi_id');
+
+        // Kirim data ke view
         return view('proker.index', compact('prokers'));
     }
+
 
 
     /**
