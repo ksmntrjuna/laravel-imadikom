@@ -35,11 +35,11 @@
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-200">
                 <tr>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Deskripsi</th>
+                    <th scope="col" class="px-6 py-3 w-16 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
+                    <th scope="col" class="px-6 py-3 w-1/4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
+                    <th scope="col" class="px-6 py-3 w-1/2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider truncate">Deskripsi</th>
                     @auth
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                    <th scope="col" class="px-6 py-3 w-32 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                     @endauth
                 </tr>
             </thead>
@@ -48,7 +48,8 @@
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $index + 1 }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $proker->nama }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $proker->deskripsi }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap truncate">{{ $proker->deskripsi }}</td>
+
                     @auth
                     <!-- Tampilkan tombol aksi hanya untuk pengguna yang login -->
                     <td class="px-6 py-4 whitespace-nowrap">

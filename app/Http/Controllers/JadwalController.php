@@ -22,8 +22,10 @@ class JadwalController extends Controller
 
         // Tambahkan kondisi pencarian berdasarkan nama kegiatan dan tempat
         if ($search) {
-            $query->where('nama_kegiatan', 'like', '%' . $search . '%')
-                ->orWhere('tempat', 'like', '%' . $search . '%');
+            $query->where(function ($q) use ($search) {
+                $q->where('nama_kegiatan', 'like', '%' . $search . '%')
+                    ->orWhere('tempat', 'like', '%' . $search . '%');
+            });
         }
 
         // Tambahkan kondisi filter berdasarkan status
@@ -33,18 +35,26 @@ class JadwalController extends Controller
 
         // Tambahkan kondisi filter berdasarkan tahun pada kolom 'mulai' dan 'selesai'
         if ($tahun) {
-            $query->whereYear('mulai', $tahun)
-                ->orWhereYear('selesai', $tahun);
+            $query->where(function ($q) use ($tahun) {
+                $q->whereYear('mulai', $tahun)
+                    ->orWhereYear('selesai', $tahun);
+            });
         }
 
-        // Dapatkan data jadwals dengan pagination
-        $jadwals = $query->paginate(15); // Sesuaikan angka 15 sesuai kebutuhan
+        // Dapatkan data jadwal
+        $jadwals = $query->get();
+
+        // Perbarui status otomatis
+        foreach ($jadwals as $jadwal) {
+            $jadwal->updateStatus();
+        }
+
+        // Dapatkan data jadwal dengan paginasi
+        $jadwals = $query->paginate(15);
 
         // Kirim data ke view
-        return view('jadwal.index', compact('jadwals', 'search'));
+        return view('jadwal.index', compact('jadwals', 'search', 'status', 'tahun'));
     }
-
-
 
     /**
      * Menampilkan formulir untuk membuat jadwal baru.
