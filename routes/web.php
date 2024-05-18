@@ -32,7 +32,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // Divisi
 Route::get('/divisi', [DivisiController::class, 'index'])->name('divisi');
 
-// Kepengurusan
+// Pengurusan
 Route::get('/pengurus', [PengurusController::class, 'index'])->name('pengurus.index');
 Route::get('/pengurus/create', [PengurusController::class, 'create'])->name('pengurus.create');
 Route::post('/pengurus', [PengurusController::class, 'store'])->name('pengurus.store');
@@ -41,21 +41,16 @@ Route::put('/pengurus/{pengurus}', [PengurusController::class, 'update'])->name(
 Route::delete('/pengurus/{pengurus}', [PengurusController::class, 'destroy'])->name('pengurus.destroy');
 Route::get('/pengurus/{pengurus}', [PengurusController::class, 'show'])->name('pengurus.show');
 
-
-
 // Proker
-Route::resource('proker', ProkerController::class);
+Route::resource('/proker', ProkerController::class);
 
 // Jadwal
-Route::resource('jadwal', JadwalController::class);
+Route::resource('/jadwal', JadwalController::class);
+Route::put('/jadwal/{id}/update-status', [JadwalController::class. 'updateJadwalStatus']);
+
 
 // Dokumentasi
-Route::get('/dokumentasi', [DokumentasiController::class, 'index'])->name('dokumentasi.index');
-Route::get('/dokumentasi/create', [DokumentasiController::class, 'create'])->name('dokumentasi.create');
-Route::post('/dokumentasi', [DokumentasiController::class, 'store'])->name('dokumentasi.store');
-Route::get('/dokumentasi/{dokumentasi}/edit', [DokumentasiController::class, 'edit'])->name('dokumentasi.edit');
-Route::put('/dokumentasi/{dokumentasi}', [DokumentasiController::class, 'update'])->name('dokumentasi.update');
-Route::delete('/dokumentasi/{dokumentasi}', [DokumentasiController::class, 'destroy'])->name('dokumentasi.destroy');
+Route::resource('/dokumentasi', DokumentasiController::class);
 
 // Login
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');

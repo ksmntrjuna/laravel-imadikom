@@ -37,7 +37,7 @@
             </div>
 
             <!-- Status -->
-            <div class="mb-4">
+            <!-- <div class="mb-4">
                 <label for="status" class="block font-semibold mb-2">Status:</label>
                 <select name="status" id="status" class="form-select w-full border border-gray-300 p-2 rounded" required>
                     <option value="belum dilaksanakan" {{ old('status') === 'belum dilaksanakan' ? 'selected' : '' }}>
@@ -50,7 +50,7 @@
                         Selesai
                     </option>
                 </select>
-            </div>
+            </div> -->
 
             <!-- Tombol Simpan -->
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">

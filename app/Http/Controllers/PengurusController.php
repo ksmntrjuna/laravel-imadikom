@@ -81,7 +81,7 @@ class PengurusController extends Controller
         Pengurus::create($data);
 
         // Redirect ke halaman daftar pengurus dengan pesan sukses
-        return redirect()->route('pengurus.index')->with('success', 'Pengurus berhasil ditambahkan.');
+        return redirect()->route('pengurus.index')->with('success', 'Data berhasil ditambahkan.');
     }
 
 
@@ -130,7 +130,7 @@ class PengurusController extends Controller
         $pengurus->update($data);
 
         // Redirect ke halaman daftar pengurus dengan pesan sukses
-        return redirect()->route('pengurus.index')->with('success', 'Pengurus berhasil diperbarui.');
+        return redirect()->route('pengurus.index')->with('success', 'Data berhasil diperbarui.');
     }
 
 
@@ -147,6 +147,6 @@ class PengurusController extends Controller
     {
         $pengurus->delete();
 
-        return redirect()->route('pengurus.index')->with('success', 'Pengurus berhasil dihapus.');
+        return redirect()->route('pengurus.index')->with('success', 'Data berhasil dihapus.');
     }
 }

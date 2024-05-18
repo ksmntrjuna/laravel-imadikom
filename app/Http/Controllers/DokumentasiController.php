@@ -66,7 +66,7 @@ class DokumentasiController extends Controller
 
         Dokumentasi::create($dokumentasiData);
 
-        return redirect()->route('dokumentasi.index')->with('success', 'Dokumentasi berhasil ditambahkan.');
+        return redirect()->route('dokumentasi.index')->with('success', 'Data berhasil ditambahkan.');
     }
 
 
@@ -100,7 +100,7 @@ class DokumentasiController extends Controller
 
         $dokumentasi->update($dokumentasiData);
 
-        return redirect()->route('dokumentasi.index')->with('success', 'Dokumentasi berhasil diperbarui.');
+        return redirect()->route('dokumentasi.index')->with('success', 'Data berhasil diperbarui.');
     }
 
     public function destroy(Dokumentasi $dokumentasi)
@@ -112,6 +112,6 @@ class DokumentasiController extends Controller
 
         $dokumentasi->delete();
 
-        return redirect()->route('dokumentasi.index')->with('success', 'Dokumentasi berhasil dihapus.');
+        return redirect()->route('dokumentasi.index')->with('success', 'Data berhasil dihapus.');
     }
 }

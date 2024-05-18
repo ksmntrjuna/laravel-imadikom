@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jadwal;
+use GuzzleHttp\Cookie\SessionCookieJar;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class JadwalController extends Controller
 {
@@ -69,24 +71,29 @@ class JadwalController extends Controller
      */
     public function store(Request $request)
     {
+        // Validasi input pengguna
         $request->validate([
             'nama_kegiatan' => 'required|string|max:255',
             'mulai' => 'required|date',
             'selesai' => 'required|date|after_or_equal:mulai',
             'tempat' => 'required|string|max:255',
-            'status' => 'required|in:belum dilaksanakan,sedang berlangsung,selesai',
         ]);
 
-        Jadwal::create([
+        // Buat jadwal baru dengan input pengguna
+        $jadwal = Jadwal::create([
             'nama_kegiatan' => $request->nama_kegiatan,
             'mulai' => $request->mulai,
             'selesai' => $request->selesai,
             'tempat' => $request->tempat,
-            'status' => $request->status,
         ]);
 
-        return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil dibuat.');
+        // Panggil metode updateStatus() untuk memperbarui status otomatis
+        $jadwal->updateStatus();
+
+        // Redirect ke daftar jadwal dengan pesan sukses
+        return redirect()->route('jadwal.index')->with('success', 'Data berhasil ditambahkan.');
     }
+
 
     /**
      * Menampilkan formulir untuk mengedit jadwal.
@@ -117,7 +124,7 @@ class JadwalController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil diperbarui.');
+        return redirect()->route('jadwal.index')->with('success', 'Data berhasil diperbarui.');
     }
 
     /**
@@ -126,7 +133,20 @@ class JadwalController extends Controller
     public function destroy(Jadwal $jadwal)
     {
         $jadwal->delete();
-        return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil dihapus.');
+        return redirect()->route('jadwal.index')->with('success', 'Data berhasil dihapus.');
+    }
+    
+    public function UpdateJadwalStatus($id)
+    {
+        $jadwal = Jadwal::find($id);
+
+        if ($jadwal) {  
+            $jadwal->updateStatus();
+            
+            return response()->json(['message' => 'Status update succesfully.']);
+        } else {
+            return response()->json(['message' => 'Jadwal not found'], 404);
+        }
     }
 }
 

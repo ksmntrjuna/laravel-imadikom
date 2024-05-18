@@ -77,7 +77,7 @@ class ProkerController extends Controller
             ]);
         }
 
-        return redirect()->route('proker.index')->with('success', 'Proker berhasil dibuat.');
+        return redirect()->route('proker.index')->with('success', 'Data berhasil ditambahkan.');
     }
 
 
@@ -115,7 +115,7 @@ class ProkerController extends Controller
             'divisi_id' => $request->divisi_id,
         ]);
 
-        return redirect()->route('proker.index')->with('success', 'Proker berhasil diperbarui.');
+        return redirect()->route('proker.index')->with('success', 'Data berhasil diperbarui.');
     }
 
     /**
@@ -124,7 +124,7 @@ class ProkerController extends Controller
     public function destroy(Proker $proker)
     {
         $proker->delete();
-        return redirect()->route('proker.index')->with('success', 'Proker berhasil dihapus.');
+        return redirect()->route('proker.index')->with('success', 'Data berhasil dihapus.');
     }
 }
 

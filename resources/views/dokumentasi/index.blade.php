@@ -3,11 +3,11 @@
 @section('content')
 <div class="container mx-auto px-4 mt-6 mb-6">
 
-    <h1 class="text-4xl font-bold mb-2 text-center font-mono">Dokumentasi IMADIKOM</h1>
+    <h1 class="text-4xl font-bold mb-2 text-center font-sans">Dokumentasi IMADIKOM</h1>
 
     @auth
     <!-- Display the "Tambah" button only for authenticated users -->
-    <a href="{{ route('dokumentasi.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded mb-2 inline-block">Tambah</a>
+    <a href="{{ route('dokumentasi.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded mb-2 inline-block">Tambah Dokumentasi</a>
     @if(session('success'))
     <div class="bg-green-200 text-green-800 px-4 py-2 rounded mb-4">{{ session('success') }}</div>
     @endif
@@ -28,17 +28,17 @@
 
     <div class="overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-200">
+            <thead class="bg-purple-900">
                 <tr>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Deskripsi</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tempat</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Foto</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">No</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Nama</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Deskripsi</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Tanggal</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Tempat</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Foto</th>
                     @auth
                     <!-- Display the "Aksi" column only for authenticated users -->
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Aksi</th>
                     @endauth
                 </tr>
             </thead>
@@ -93,9 +93,9 @@
     <div class="bg-white p-6 rounded-lg shadow-lg mb-6 text-center">
         <h3 class="text-2xl font-bold mb-2">{{ $d->nama }}</h3>
         <img src="{{ $d->getFotoUrlAttribute() }}" alt="Foto Dokumentasi" class="w-1/4 h-auto rounded-lg mb-4 mx-auto">
-        <p class="text-gray-700 mt-2">{{ $d->deskripsi }}</p>
         <p class="text-gray-500 mt-2">Tanggal: {{ \Carbon\Carbon::parse($d->tanggal)->format('d-m-Y') }}</p>
         <p class="text-gray-500 mt-2">Tempat: {{ $d->tempat }}</p>
+        <p class="text-gray-700 mt-2">{{ $d->deskripsi }}</p>
     </div>
     @endforeach
 </div>

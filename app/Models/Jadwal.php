@@ -21,21 +21,19 @@ class Jadwal extends Model
 
     public function updateStatus()
     {
-        $now = Carbon::now(); // Waktu saat ini
+        $now = Carbon::now();
+        $mulai = Carbon::parse($this->mulai);
+        $selesai = Carbon::parse($this->selesai);
 
-        // Periksa status berdasarkan waktu saat ini
-        if ($now < $this->mulai) {
-            // Sebelum jadwal dimulai
+        if ($now < $mulai) {
             $this->status = 'belum dilaksanakan';
-        } elseif ($now >= $this->mulai && $now <= $this->selesai) {
-            // Selama jadwal berlangsung
+        } elseif ($now >= $mulai && $now <= $selesai) {
             $this->status = 'sedang berlangsung';
         } else {
-            // Setelah jadwal selesai
             $this->status = 'selesai';
         }
 
-        // Simpan perubahan status
+        // Simpan perubahan status ke database
         $this->save();
     }
 
