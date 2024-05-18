@@ -48,6 +48,7 @@ Route::resource('proker', ProkerController::class);
 
 // Jadwal
 Route::resource('jadwal', JadwalController::class);
+Route::put('/jadwal/{id}/update-status', [JadwalController::class, 'updateJadwalStatus']);
 
 // Dokumentasi
 Route::get('/dokumentasi', [DokumentasiController::class, 'index'])->name('dokumentasi.index');

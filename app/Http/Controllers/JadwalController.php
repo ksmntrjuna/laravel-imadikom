@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Jadwal;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class JadwalController extends Controller
 {
@@ -56,6 +57,20 @@ class JadwalController extends Controller
         return view('jadwal.index', compact('jadwals', 'search', 'status', 'tahun'));
     }
 
+    public function updateJadwalStatus($id)
+    {
+        // Temukan jadwal berdasarkan ID
+        $jadwal = Jadwal::find($id);
+
+        if ($jadwal) {
+            // Perbarui status jadwal
+            $jadwal->updateStatus();
+
+            return response()->json(['message' => 'Status updated successfully.']);
+        } else {
+            return response()->json(['message' => 'Jadwal not found.'], 404);
+        }
+    }
     /**
      * Menampilkan formulir untuk membuat jadwal baru.
      */

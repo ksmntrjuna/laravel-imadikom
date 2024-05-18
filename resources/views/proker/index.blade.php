@@ -26,7 +26,6 @@
             <option value="{{ $year }}" {{ request('tahun') == $year ? 'selected' : '' }}>{{ $year }}</option>
             @endforeach
         </select>
-
     </form>
 
     @foreach($prokers as $divisi_id => $groupedProkers)
@@ -37,7 +36,7 @@
                 <tr>
                     <th scope="col" class="px-6 py-3 w-16 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
                     <th scope="col" class="px-6 py-3 w-1/4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
-                    <th scope="col" class="px-6 py-3 w-1/2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider truncate">Deskripsi</th>
+                    <th scope="col" class="px-6 py-3 w-1/2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Deskripsi</th>
                     @auth
                     <th scope="col" class="px-6 py-3 w-32 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                     @endauth
@@ -48,7 +47,7 @@
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $index + 1 }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $proker->nama }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap truncate">{{ $proker->deskripsi }}</td>
+                    <td class="px-6 py-4 whitespace-normal break-words">{{ $proker->deskripsi }}</td> <!-- Ubah kelas CSS di sini -->
 
                     @auth
                     <!-- Tampilkan tombol aksi hanya untuk pengguna yang login -->

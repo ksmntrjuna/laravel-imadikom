@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-<div class="container mx-auto px-4 mt-6 mb-6">
+<div class="container mx-auto px-4 mt-6 flex-grow flex flex-col min-h-screen">
 
     <h1 class="text-4xl font-bold mb-2 text-center font-mono">Dokumentasi IMADIKOM</h1>
 
@@ -52,7 +52,7 @@
                     <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($d->tanggal)->format('d-m-Y') }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $d->tempat }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <img src="{{ $d->getFotoUrlAttribute() }}" alt="Foto Dokumentasi" class="max-w-xs max-h-24">
+                        <img src="{{ asset('dokumentasi/'.$d->foto) }}" alt="Foto Dokumentasi" class="max-w-xs max-h-24">
                     </td>
                     @auth
                     <!-- Display the "Edit" and "Hapus" buttons only for authenticated users -->
@@ -75,7 +75,7 @@
 
 <!-- tampilan publik -->
 @guest
-<div class="container mx-auto px-4 mt-6">
+<div class="container mx-auto px-4 mb-4 mt-4">
     <!-- Formulir Pencarian -->
     <form method="GET" action="{{ route('dokumentasi.index') }}" id="filterForm" class="mb-4">
         <input type="text" name="search" placeholder="Cari..." class="border px-4 py-2 rounded" value="{{ request('search') }}">
