@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mx-auto px-4 mt-6 mb-6">
-    <h1 class="text-4xl font-bold mb-2 text-center font-mono">Daftar Proker IMADIKOM</h1>
+    <h1 class="text-4xl font-bold mb-2 text-center font-sans">Daftar Proker IMADIKOM</h1>
 
     @auth
     <!-- Tampilkan tombol "Buat Proker Baru" hanya untuk pengguna yang login -->
@@ -26,7 +26,6 @@
             <option value="{{ $year }}" {{ request('tahun') == $year ? 'selected' : '' }}>{{ $year }}</option>
             @endforeach
         </select>
-
     </form>
 
     @foreach($prokers as $divisi_id => $groupedProkers)
@@ -37,7 +36,7 @@
                 <tr>
                     <th scope="col" class="px-6 py-3 w-16 text-left text-xs font-medium text-white uppercase tracking-wider">No</th>
                     <th scope="col" class="px-6 py-3 w-1/4 text-left text-xs font-medium text-white uppercase tracking-wider">Nama</th>
-                    <th scope="col" class="px-6 py-3 w-1/2 text-left text-xs font-medium text-white uppercase tracking-wider truncate">Deskripsi</th>
+                    <th scope="col" class="px-6 py-3 w-1/2 text-left text-xs font-medium text-white uppercase tracking-wider">Deskripsi</th>
                     @auth
                     <th scope="col" class="px-6 py-3 w-32 text-left text-xs font-medium text-white uppercase tracking-wider">Aksi</th>
                     @endauth
@@ -48,7 +47,7 @@
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $index + 1 }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $proker->nama }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap truncate">{{ $proker->deskripsi }}</td>
+                    <td class="px-6 py-4 whitespace-normal break-words">{{ $proker->deskripsi }}</td> <!-- Ubah kelas CSS di sini -->
 
                     @auth
                     <!-- Tampilkan tombol aksi hanya untuk pengguna yang login -->

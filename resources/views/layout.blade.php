@@ -121,7 +121,7 @@
     </main>
 
     <!-- footer-->
-    <footer class="bg-orange-500 text-white p-4">
+    <footer class="cotainer bg-orange-500 text-white p-3 w-full ">
         <div class="flex flex-col items-center">
             <img src="{{ asset('images/logo-putih.png') }}" alt="Logo-putih" class="h-8 mb-4">
             <p class="text-center text-sm mb-4 mx-auto font-sans">Alamat: Jl. Ring Road Utara, Ngringin, Condongcatur, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281</p>

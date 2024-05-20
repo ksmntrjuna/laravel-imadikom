@@ -7,7 +7,7 @@
 
     @auth
     <!-- Display the "Tambah" button only for authenticated users -->
-    <a href="{{ route('dokumentasi.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded mb-2 inline-block">Tambah Dokumentasi</a>
+    <a href="{{ route('dokumentasi.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded mb-2 inline-block">Tambah</a>
     @if(session('success'))
     <div class="bg-green-200 text-green-800 px-4 py-2 rounded mb-4">{{ session('success') }}</div>
     @endif

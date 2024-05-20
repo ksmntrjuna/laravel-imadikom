@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jadwal;
-use GuzzleHttp\Cookie\SessionCookieJar;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -58,6 +57,20 @@ class JadwalController extends Controller
         return view('jadwal.index', compact('jadwals', 'search', 'status', 'tahun'));
     }
 
+    public function updateJadwalStatus($id)
+    {
+        // Temukan jadwal berdasarkan ID
+        $jadwal = Jadwal::find($id);
+
+        if ($jadwal) {
+            // Perbarui status jadwal
+            $jadwal->updateStatus();
+
+            return response()->json(['message' => 'Status updated successfully.']);
+        } else {
+            return response()->json(['message' => 'Jadwal not found.'], 404);
+        }
+    }
     /**
      * Menampilkan formulir untuk membuat jadwal baru.
      */
@@ -71,7 +84,6 @@ class JadwalController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi input pengguna
         $request->validate([
             'nama_kegiatan' => 'required|string|max:255',
             'mulai' => 'required|date',
@@ -79,21 +91,15 @@ class JadwalController extends Controller
             'tempat' => 'required|string|max:255',
         ]);
 
-        // Buat jadwal baru dengan input pengguna
-        $jadwal = Jadwal::create([
+        Jadwal::create([
             'nama_kegiatan' => $request->nama_kegiatan,
             'mulai' => $request->mulai,
             'selesai' => $request->selesai,
             'tempat' => $request->tempat,
         ]);
 
-        // Panggil metode updateStatus() untuk memperbarui status otomatis
-        $jadwal->updateStatus();
-
-        // Redirect ke daftar jadwal dengan pesan sukses
-        return redirect()->route('jadwal.index')->with('success', 'Data berhasil ditambahkan.');
+        return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil dibuat.');
     }
-
 
     /**
      * Menampilkan formulir untuk mengedit jadwal.
@@ -113,7 +119,6 @@ class JadwalController extends Controller
             'mulai' => 'required|date',
             'selesai' => 'required|date|after_or_equal:mulai',
             'tempat' => 'required|string|max:255',
-            'status' => 'required|in:belum dilaksanakan,sedang berlangsung,selesai',
         ]);
 
         $jadwal->update([
@@ -121,10 +126,9 @@ class JadwalController extends Controller
             'mulai' => $request->mulai,
             'selesai' => $request->selesai,
             'tempat' => $request->tempat,
-            'status' => $request->status,
         ]);
 
-        return redirect()->route('jadwal.index')->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil diperbarui.');
     }
 
     /**
@@ -133,20 +137,6 @@ class JadwalController extends Controller
     public function destroy(Jadwal $jadwal)
     {
         $jadwal->delete();
-        return redirect()->route('jadwal.index')->with('success', 'Data berhasil dihapus.');
-    }
-    
-    public function UpdateJadwalStatus($id)
-    {
-        $jadwal = Jadwal::find($id);
-
-        if ($jadwal) {  
-            $jadwal->updateStatus();
-            
-            return response()->json(['message' => 'Status update succesfully.']);
-        } else {
-            return response()->json(['message' => 'Jadwal not found'], 404);
-        }
+        return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil dihapus.');
     }
 }
-

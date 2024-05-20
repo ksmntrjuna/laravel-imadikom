@@ -69,7 +69,11 @@ class DokumentasiController extends Controller
         return redirect()->route('dokumentasi.index')->with('success', 'Data berhasil ditambahkan.');
     }
 
-
+    public function show($id)
+    {
+        $dokumentasi = Dokumentasi::findOrFail($id);
+        return view('dokumentasi.show', compact('dokumentasi'));
+    }
 
     public function edit(Dokumentasi $dokumentasi)
     {
