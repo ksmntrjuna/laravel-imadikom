@@ -45,16 +45,6 @@
                 <input type="text" name="tempat" id="tempat" class="form-input w-full border border-gray-300 p-2 rounded" value="{{ old('tempat', $jadwal->tempat) }}" required>
             </div>
 
-            <!-- Status -->
-            <div class="mb-4">
-                <label for="status" class="block font-semibold mb-2">Status:</label>
-                <select name="status" id="status" class="form-select w-full border border-gray-300 p-2 rounded" required>
-                    <option value="belum dilaksanakan" {{ old('status', $jadwal->status) === 'belum dilaksanakan' ? 'selected' : '' }}>Belum Dilaksanakan</option>
-                    <option value="sedang berlangsung" {{ old('status', $jadwal->status) === 'sedang berlangsung' ? 'selected' : '' }}>Sedang Berlangsung</option>
-                    <option value="selesai" {{ old('status', $jadwal->status) === 'selesai' ? 'selected' : '' }}>Selesai</option>
-                </select>
-            </div>
-
             <!-- Tombol Update -->
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                 Simpan

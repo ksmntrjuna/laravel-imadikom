@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mx-auto px-4 mt-6 mb-6">
     <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
-        <h2 class="text-2xl font-bold mb-4">Tambah Pengurus Baru</h2>
+        <h2 class="text-2xl font-bold mb-4 font-sans">Tambah Pengurus Baru</h2>
 
         <!-- Tombol Kembali -->
         <a href="{{ route('pengurus.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 mb-4 inline-block">Kembali</a>

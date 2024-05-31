@@ -43,7 +43,7 @@
                 <input type="file" id="foto" name="foto" class="form-input w-full border border-gray-300 p-2 rounded">
                 @if ($dokumentasi->foto)
                 <p class="mt-2">
-                    <img src="{{ $dokumentasi->getFotoUrlAttribute() }}" alt="Foto Dokumentasi" class="max-w-xs rounded-md">
+                    <img src="{{ asset('storage/' . $dokumentasi->foto) }}" alt="Foto Dokumentasi" class="max-w-xs rounded-md">
                 </p>
                 @endif
             </div>

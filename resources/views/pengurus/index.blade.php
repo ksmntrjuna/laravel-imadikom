@@ -2,23 +2,23 @@
 
 @section('content')
 <div class="container mx-auto px-4 mt-6 mb-6">
-    <h1 class="text-4xl font-bold mb-2 text-center font-mono">Daftar Pengurus IMADIKOM</h1>
+    <h1 class="text-4xl font-bold mb-2 text-center font-sans">Daftar Pengurus IMADIKOM</h1>
 
     @auth
     <!-- Display the "Tambah Pengurus" button only for authenticated users -->
-    <a href="{{ route('pengurus.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block">Tambah Pengurus</a>
+    <a href="{{ route('pengurus.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block font-sans">Tambah Pengurus</a>
     @if(session('success'))
-    <div class="bg-green-200 text-green-800 px-4 py-2 rounded mb-4">{{ session('success') }}</div>
+    <div class="bg-green-200 text-green-800 px-4 py-2 rounded mb-4 font-sans">{{ session('success') }}</div>
     @endif
     @endauth
 
     <!-- Formulir Pencarian -->
     <form method="GET" action="{{ route('pengurus.index') }}" class="mb-4" id="filterForm">
-        <input type="text" name="search" placeholder="Cari Pengurus..." class="border px-4 py-2 rounded" value="{{ request('search') }}">
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Cari</button>
+        <input type="text" name="search" placeholder="Cari Pengurus..." class="border px-4 py-2 rounded font-sans" value="{{ request('search') }}">
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded font-sans">Cari</button>
 
         <!-- Filter Tahun -->
-        <select name="tahun" class="border px-4 py-2 rounded mr-2" id="tahunFilter" onchange="filterByYear()">
+        <select name="tahun" class="border px-4 py-2 rounded mr-2 font-sans" id="tahunFilter" onchange="filterByYear()">
             <option value="">--Pilih Tahun--</option>
             @foreach(range(date('Y'), date('Y') - 10) as $year)
             <option value="{{ $year }}" {{ request('tahun') == $year ? 'selected' : '' }}>{{ $year }}</option>
@@ -28,15 +28,15 @@
 
     <div class="overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-200">
+            <thead class="bg-purple-900">
                 <tr>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Divisi</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jabatan</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider font-sans">No</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider font-sans">Nama</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider font-sans">Divisi</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider font-sans">Jabatan</th>
                     @auth
                     <!-- Display the "Aksi" column only for authenticated users -->
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider font-sans">Aksi</th>
                     @endauth
                 </tr>
             </thead>
@@ -44,23 +44,22 @@
                 @foreach($pengurus as $index => $p)
 
                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $index + 1 }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="px-6 py-4 whitespace-nowrap font-sans">{{ $index + 1 }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap font-sans">
                         <a href="{{ route('pengurus.show', $p->id) }}" class="text-blue-600 hover:underline">
                             {{ $p->nama }}
                         </a>
                     </td>
-
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $p->divisi->nama_divisi }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $p->jabatan->nama_jabatan }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap font-sans">{{ $p->divisi->nama_divisi }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap font-sans">{{ $p->jabatan->nama_jabatan }}</td>
                     @auth
                     <!-- Display the "Edit" and "Hapus" buttons only for authenticated users -->
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <a href="{{ route('pengurus.edit', $p->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
+                        <a href="{{ route('pengurus.edit', $p->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-2 font-sans">Edit</a>
                         <form action="{{ route('pengurus.destroy', $p->id) }}" method="POST" class="inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Apakah Anda yakin ingin menghapus pengurus ini?')">Hapus</button>
+                            <button type="submit" class="text-red-600 hover:text-red-900 font-sans" onclick="return confirm('Apakah Anda yakin ingin menghapus pengurus ini?')">Hapus</button>
                         </form>
                     </td>
                     @endauth

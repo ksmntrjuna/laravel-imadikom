@@ -89,7 +89,6 @@ class JadwalController extends Controller
             'mulai' => 'required|date',
             'selesai' => 'required|date|after_or_equal:mulai',
             'tempat' => 'required|string|max:255',
-            'status' => 'required|in:belum dilaksanakan,sedang berlangsung,selesai',
         ]);
 
         Jadwal::create([
@@ -97,7 +96,6 @@ class JadwalController extends Controller
             'mulai' => $request->mulai,
             'selesai' => $request->selesai,
             'tempat' => $request->tempat,
-            'status' => $request->status,
         ]);
 
         return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil dibuat.');
@@ -121,7 +119,6 @@ class JadwalController extends Controller
             'mulai' => 'required|date',
             'selesai' => 'required|date|after_or_equal:mulai',
             'tempat' => 'required|string|max:255',
-            'status' => 'required|in:belum dilaksanakan,sedang berlangsung,selesai',
         ]);
 
         $jadwal->update([
@@ -129,7 +126,6 @@ class JadwalController extends Controller
             'mulai' => $request->mulai,
             'selesai' => $request->selesai,
             'tempat' => $request->tempat,
-            'status' => $request->status,
         ]);
 
         return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil diperbarui.');
@@ -144,4 +140,3 @@ class JadwalController extends Controller
         return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil dihapus.');
     }
 }
-

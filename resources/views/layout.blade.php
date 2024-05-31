@@ -22,36 +22,36 @@
             <!-- Menu -->
             <ul class="hidden md:flex items-center space-x-4 z-10">
                 <li class="{{ request()->routeIs('home') ? 'bg-orange-500 rounded-lg' : '' }}">
-                    <a href="{{ route('home') }}" class="block px-4 py-2 {{ request()->routeIs('home') ? 'text-white' : 'hover:text-orange-300' }}">Home</a>
+                    <a href="{{ route('home') }}" class="block px-4 py-2 font-sans {{ request()->routeIs('home') ? 'text-white' : 'hover:text-orange-300' }}">Home</a>
                 </li>
                 <li class="{{ request()->routeIs('divisi') ? 'bg-orange-500 rounded-lg' : '' }}">
-                    <a href="{{ route('divisi') }}" class="block px-4 py-2 {{ request()->routeIs('divisi') ? 'text-white' : 'hover:text-orange-300' }}">
+                    <a href="{{ route('divisi') }}" class="block px-4 py-2 font-sans {{ request()->routeIs('divisi') ? 'text-white' : 'hover:text-orange-300' }}">
                         Divisi
                     </a>
                 </li>
                 <li class="{{ request()->routeIs('pengurus.index') ? 'bg-orange-500 rounded-lg' : '' }}">
-                    <a href="{{ route('pengurus.index') }}" class="block px-4 py-2 {{ request()->routeIs('pengurus.index') ? 'text-white' : 'hover:text-orange-300' }}">
+                    <a href="{{ route('pengurus.index') }}" class="block px-4 py-2 font-sans {{ request()->routeIs('pengurus.index') ? 'text-white' : 'hover:text-orange-300' }}">
                         Pengurus
                     </a>
                 </li>
                 <li class="{{ request()->routeIs('proker.index') ? 'bg-orange-500 rounded-lg' : '' }}">
-                    <a href="{{ route('proker.index') }}" class="block px-4 py-2 {{ request()->routeIs('proker.index') ? 'text-white' : 'hover:text-orange-300' }}">
+                    <a href="{{ route('proker.index') }}" class="block px-4 py-2 font-sans {{ request()->routeIs('proker.index') ? 'text-white' : 'hover:text-orange-300' }}">
                         Proker
                     </a>
                 </li>
                 <li class="{{ request()->routeIs('jadwal.index') ? 'bg-orange-500 rounded-lg' : '' }}">
-                    <a href="{{ route('jadwal.index') }}" class="block px-4 py-2 {{ request()->routeIs('jadwal.index') ? 'text-white' : 'hover:text-orange-300' }}">
+                    <a href="{{ route('jadwal.index') }}" class="block px-4 py-2 font-sans {{ request()->routeIs('jadwal.index') ? 'text-white' : 'hover:text-orange-300' }}">
                         Jadwal
                     </a>
                 </li>
                 <li class="{{ request()->routeIs('dokumentasi.index') ? 'bg-orange-500 rounded-lg' : '' }}">
-                    <a href="{{ route('dokumentasi.index') }}" class="block px-4 py-2 {{ request()->routeIs('dokumentasi.index') ? 'text-white' : 'hover:text-orange-300' }}">
+                    <a href="{{ route('dokumentasi.index') }}" class="block px-4 py-2 font-sans {{ request()->routeIs('dokumentasi.index') ? 'text-white' : 'hover:text-orange-300' }}">
                         Dokumentasi
                     </a>
                 </li>
                 @if(Auth::check())
                 <li>
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-white hover:text-orange-300">
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-white font-sans hover:text-orange-300">
                         Logout
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
@@ -60,7 +60,7 @@
                 </li>
                 @else
                 <li>
-                    <a href="{{ route('login') }}" class="block px-4 py-2 text-white hover:text-orange-300">
+                    <a href="{{ route('login') }}" class="block px-4 py-2 text-white font-sans hover:text-orange-300">
                         Login
                     </a>
                 </li>
@@ -127,13 +127,13 @@
             <p class="text-center text-sm mb-4 mx-auto">Alamat: Jl. Ring Road Utara, Ngringin, Condongcatur, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281</p>
             <div class="flex space-x-4 mb-4">
                 <a href="https://www.instagram.com/imadikom?igsh=dXNpczRmaGU4NHdt" target="_blank" class="hover:text-gray-300 flex items-center">
-                    <i class="fab fa-instagram"></i> imadikom
+                    <i class="fab fa-instagram font-sans"></i> imadikom
                 </a>
                 <a href="mailto:kipamikom@gmail.com" class="hover:text-gray-300 flex items-center">
-                    <i class="far fa-envelope"></i> kipamikom@gmail.com
+                    <i class="far fa-envelope font-sans"></i> kipamikom@gmail.com
                 </a>
             </div>
-            <p class="text-center text-sm">© 2024 IMADIKOM. by KSMNTR.</p>
+            <p class="text-center text-sm font-sans">© 2024 IMADIKOM. by KSMNTR.</p>
 
         </div>
     </footer>

@@ -19,20 +19,44 @@
 
         <!-- Kolom kanan: Informasi pengurus -->
         <div class="flex-grow mt-4 md:mt-0 md:ml-6">
-            <p class="mb-2"><strong>Nama:</strong> {{ $pengurus->nama }}</p>
-            <p class="mb-2"><strong>Divisi:</strong> {{ $pengurus->divisi->nama_divisi }}</p>
-            <p class="mb-2"><strong>Jabatan:</strong> {{ $pengurus->jabatan->nama_jabatan }}</p>
-            <p class="mb-2"><strong>NIM:</strong> {{ $pengurus->nim }}</p>
-            <p class="mb-2"><strong>Kelas:</strong> {{ $pengurus->kelas }}</p>
-            <p class="mb-2"><strong>Alamat:</strong> {{ $pengurus->alamat }}</p>
-            <p class="mb-2"><strong>Email:</strong> {{ $pengurus->email }}</p>
-            <p class="mb-2"><strong>Telepon:</strong> {{ $pengurus->telp }}</p>
+            <div class="flex mb-2">
+                <strong class="w-32">Nama</strong>
+                <span>: {{ $pengurus->nama }}</span>
+            </div>
+            <div class="flex mb-2">
+                <strong class="w-32">Divisi</strong>
+                <span>: {{ $pengurus->divisi->nama_divisi }}</span>
+            </div>
+            <div class="flex mb-2">
+                <strong class="w-32">Jabatan</strong>
+                <span>: {{ $pengurus->jabatan->nama_jabatan }}</span>
+            </div>
+            <div class="flex mb-2">
+                <strong class="w-32">NIM</strong>
+                <span>: {{ $pengurus->nim }}</span>
+            </div>
+            <div class="flex mb-2">
+                <strong class="w-32">Kelas</strong>
+                <span>: {{ $pengurus->kelas }}</span>
+            </div>
+            <div class="flex mb-2">
+                <strong class="w-32">Alamat</strong>
+                <span>: {{ $pengurus->alamat }}</span>
+            </div>
+            <div class="flex mb-2">
+                <strong class="w-32">Email</strong>
+                <span>: {{ $pengurus->email }}</span>
+            </div>
+            <div class="flex mb-2">
+                <strong class="w-32">Telepon</strong>
+                <span>: {{ $pengurus->telp }}</span>
+            </div>
         </div>
     </div>
 
     <!-- Tombol Kembali -->
-    <div class="mt-6"> <!-- Tambahkan kelas margin sesuai kebutuhan -->
-        <a href="{{ route('pengurus.index') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+    <div class="mt-6">
+        <a href="{{ route('pengurus.index') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Kembali
         </a>
     </div>

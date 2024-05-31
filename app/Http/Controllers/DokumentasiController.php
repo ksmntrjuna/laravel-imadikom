@@ -10,35 +10,35 @@ use Illuminate\Support\Facades\Storage;
 class DokumentasiController extends Controller
 {
     public function index(Request $request)
-{
-    // Ambil input pencarian dan filter tahun
-    $search = $request->input('search');
-    $tahun = $request->input('tahun');
+    {
+        // Ambil input pencarian dan filter tahun
+        $search = $request->input('search');
+        $tahun = $request->input('tahun');
 
-    // Inisialisasi query untuk Dokumentasi
-    $query = Dokumentasi::query();
+        // Inisialisasi query untuk Dokumentasi
+        $query = Dokumentasi::query();
 
-    // Tambahkan kondisi pencarian berdasarkan nama, deskripsi, tanggal, dan tempat
-    if ($search) {
-        $query->where(function($q) use ($search) {
-            $q->where('nama', 'like', '%' . $search . '%')
-              ->orWhere('deskripsi', 'like', '%' . $search . '%')
-              ->orWhere('tanggal', 'like', '%' . $search . '%')
-              ->orWhere('tempat', 'like', '%' . $search . '%');
-        });
+        // Tambahkan kondisi pencarian berdasarkan nama, deskripsi, tanggal, dan tempat
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('nama', 'like', '%' . $search . '%')
+                    ->orWhere('deskripsi', 'like', '%' . $search . '%')
+                    ->orWhere('tanggal', 'like', '%' . $search . '%')
+                    ->orWhere('tempat', 'like', '%' . $search . '%');
+            });
+        }
+
+        // Tambahkan kondisi filter berdasarkan tahun pada kolom 'tanggal'
+        if ($tahun) {
+            $query->whereYear('tanggal', $tahun);
+        }
+
+        // Dapatkan data dokumentasi dengan pagination
+        $dokumentasi = $query->paginate(15); // Sesuaikan angka 15 sesuai kebutuhan
+        // dd($dokumentasi);
+        // Kirim data ke view
+        return view('dokumentasi.index', compact('dokumentasi'));
     }
-
-    // Tambahkan kondisi filter berdasarkan tahun pada kolom 'tanggal'
-    if ($tahun) {
-        $query->whereYear('tanggal', $tahun);
-    }
-
-    // Dapatkan data dokumentasi dengan pagination
-    $dokumentasi = $query->paginate(15); // Sesuaikan angka 15 sesuai kebutuhan
-
-    // Kirim data ke view
-    return view('dokumentasi.index', compact('dokumentasi'));
-}
 
 
 
@@ -66,7 +66,7 @@ class DokumentasiController extends Controller
 
         Dokumentasi::create($dokumentasiData);
 
-        return redirect()->route('dokumentasi.index')->with('success', 'Dokumentasi berhasil ditambahkan.');
+        return redirect()->route('dokumentasi.index')->with('success', 'Data berhasil ditambahkan.');
     }
 
     public function show($id)
@@ -104,7 +104,7 @@ class DokumentasiController extends Controller
 
         $dokumentasi->update($dokumentasiData);
 
-        return redirect()->route('dokumentasi.index')->with('success', 'Dokumentasi berhasil diperbarui.');
+        return redirect()->route('dokumentasi.index')->with('success', 'Data berhasil diperbarui.');
     }
 
     public function destroy(Dokumentasi $dokumentasi)
@@ -116,6 +116,6 @@ class DokumentasiController extends Controller
 
         $dokumentasi->delete();
 
-        return redirect()->route('dokumentasi.index')->with('success', 'Dokumentasi berhasil dihapus.');
+        return redirect()->route('dokumentasi.index')->with('success', 'Data berhasil dihapus.');
     }
 }

@@ -2,11 +2,11 @@
 
 @section('content')
 <div class="container mx-auto px-4 mt-6 mb-6">
-    <h1 class="text-4xl font-bold mb-2 text-center font-mono">Daftar Proker IMADIKOM</h1>
+    <h1 class="text-4xl font-bold mb-2 text-center font-sans">Daftar Proker IMADIKOM</h1>
 
     @auth
     <!-- Tampilkan tombol "Buat Proker Baru" hanya untuk pengguna yang login -->
-    <a href="{{ route('proker.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block">Buat Proker Baru</a>
+    <a href="{{ route('proker.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block">Tambah Proker</a>
     @endauth
 
     @if(session('success'))
@@ -32,13 +32,13 @@
     <h2 class="text-xl font-bold my-4">{{ $groupedProkers->first()->divisi->nama_divisi ?? 'Divisi Tidak Diketahui' }}</h2>
     <div class="overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-200">
+            <thead class="bg-purple-900">
                 <tr>
-                    <th scope="col" class="px-6 py-3 w-16 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
-                    <th scope="col" class="px-6 py-3 w-1/4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
-                    <th scope="col" class="px-6 py-3 w-1/2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Deskripsi</th>
+                    <th scope="col" class="px-6 py-3 w-16 text-left text-xs font-medium text-white uppercase tracking-wider">No</th>
+                    <th scope="col" class="px-6 py-3 w-1/4 text-left text-xs font-medium text-white uppercase tracking-wider">Nama</th>
+                    <th scope="col" class="px-6 py-3 w-1/2 text-left text-xs font-medium text-white uppercase tracking-wider">Deskripsi</th>
                     @auth
-                    <th scope="col" class="px-6 py-3 w-32 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                    <th scope="col" class="px-6 py-3 w-32 text-left text-xs font-medium text-white uppercase tracking-wider">Aksi</th>
                     @endauth
                 </tr>
             </thead>

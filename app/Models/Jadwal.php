@@ -24,7 +24,7 @@ class Jadwal extends Model
         $now = Carbon::now(); // Waktu saat ini
         $mulai = Carbon::parse($this->mulai); // Cast mulai to Carbon instance
         $selesai = Carbon::parse($this->selesai); // Cast selesai to Carbon instance
-    
+
         // Periksa status berdasarkan waktu saat ini
         if ($now < $mulai) {
             // Sebelum jadwal dimulai
@@ -36,10 +36,8 @@ class Jadwal extends Model
             // Setelah jadwal selesai
             $this->status = 'selesai';
         }
-    
+
         // Simpan perubahan status
         $this->save();
     }
-    
-
 }
