@@ -14,10 +14,12 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
+        $p = hash(PASSWORD_BCRYPT, 'loremipsum123');
+        error_log($p);
         User::create([
             'name' => 'admin-imadikom',
             'email' => 'kipamikom@gmail.com',
-            'password' => hash(PASSWORD_BCRYPT, 'loremipsum123'),
+            'password' => $p,
         ]);
     }
 }
