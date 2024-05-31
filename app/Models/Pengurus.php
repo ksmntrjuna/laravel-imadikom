@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Pengurus extends Model
 {
     use HasFactory;
-    protected $table = 'Pengurus';
+    protected $table = 'pengurus';
     protected $fillable = [
         'nama',
         'divisi_id',
