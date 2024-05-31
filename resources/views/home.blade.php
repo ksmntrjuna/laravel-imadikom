@@ -25,7 +25,7 @@
         <div class="container mx-auto px-4">
             <h1 class="text-4xl font-bold mb-2 text-center font-sans">IMADIKOM</h1>
             <div class="flex justify-center mb-4">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-auto w-full max-w-sm mx-auto mb-4">
+                <img src="{{ asset('images/Logo.png') }}" alt="Logo" class="h-auto w-full max-w-sm mx-auto mb-4">
             </div>
             <p class="text-center text-lg mb-4 font-bold font-sans">IMADIKOM (Ikatan Mahasiswa Bidikmisi & KIP-K Amikom) merupakan organisasi untuk para penerima beasiswa KIP-K.</p>
         </div>
