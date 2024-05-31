@@ -28,7 +28,7 @@
 
                 <div class="mb-4">
                     <!-- Modifikasi ukuran logo dan tambah kelas mx-auto -->
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-42 mx-auto"> <!-- Ubah nilai h-12 sesuai kebutuhan -->
+                    <img src="{{ asset('images/Logo.png') }}" alt="Logo" class="h-42 mx-auto"> <!-- Ubah nilai h-12 sesuai kebutuhan -->
                 </div>
 
                 <div class="mb-4">
