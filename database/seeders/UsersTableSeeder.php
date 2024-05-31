@@ -14,8 +14,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $p = hash(PASSWORD_BCRYPT, 'loremipsum123');
-        error_log($p);
+        $p = Hash::make("loremipsum123");
         User::create([
             'name' => 'admin-imadikom',
             'email' => 'kipamikom@gmail.com',
