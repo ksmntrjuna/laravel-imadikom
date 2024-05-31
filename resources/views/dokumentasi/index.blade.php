@@ -52,7 +52,7 @@
                     <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($d->tanggal)->format('d-m-Y') }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $d->tempat }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <img src="{{ asset('storage/' . $d->foto) }}" alt="Foto Dokumentasi" class="max-w-xs max-h-24">
+                        <img src="{{ $d->getFotoUrlAttribute() }}" alt="Foto Dokumentasi" class="max-w-xs max-h-24">
                     </td>
                     @auth
                     <!-- Display the "Edit" and "Hapus" buttons only for authenticated users -->
@@ -92,7 +92,7 @@
     @foreach($dokumentasi as $d)
     <div class="bg-white p-6 rounded-lg shadow-lg mb-6 text-center">
         <h3 class="text-2xl font-bold mb-2">{{ $d->nama }}</h3>
-        <img src="{{ asset('storage/' . $d->foto) }}" alt="Foto Dokumentasi" class="w-1/4 h-auto rounded-lg mb-4 mx-auto">
+        <img src="{{ $d->getFotoUrlAttribute() }}" alt="Foto Dokumentasi" class="w-1/4 h-auto rounded-lg mb-4 mx-auto">
         <p class="text-gray-500 mt-2">Tanggal: {{ \Carbon\Carbon::parse($d->tanggal)->format('d-m-Y') }}</p>
         <p class="text-gray-500 mt-2">Tempat: {{ $d->tempat }}</p>
         <p class="text-gray-700 mt-2">{{ $d->deskripsi }}</p>
