@@ -90,6 +90,11 @@
                     Pengurus
                 </a>
             </li>
+            <li class="{{ request()->routeIs('proker.index') ? 'bg-orange-500 rounded-lg' : '' }}">
+                <a href="{{ route('proker.index') }}" class="block px-4 py-2 font-sans {{ request()->routeIs('proker.index') ? 'text-white' : 'hover:text-orange-300' }}">
+                    Proker
+                </a>
+            </li>
             <li class="{{ request()->routeIs('jadwal.index') ? 'bg-orange-500' : '' }}">
                 <a href="{{ route('jadwal.index') }}" class="block px-4 py-2 {{ request()->routeIs('jadwal.index') ? 'text-white' : 'hover:text-orange-300' }}">
                     Jadwal
@@ -133,7 +138,7 @@
                     <i class="far fa-envelope font-sans"></i> kipamikom@gmail.com
                 </a>
             </div>
-            <p class="text-center text-sm font-sans">© 2024 IMADIKOM. by KSMNTR.</p>
+            <p class="text-center text-sm font-sans">© 2024 IMADIKOM.</p>
 
         </div>
     </footer>
