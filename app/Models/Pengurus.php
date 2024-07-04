@@ -15,12 +15,13 @@ class Pengurus extends Model
         'nama',
         'divisi_id',
         'jabatan_id',
-        'nim', 
-        'alamat', 
-        'email', 
+        'nim',
+        'alamat',
+        'email',
         'telp',
         'kelas',
         'foto',
+        'angkatan'
     ];
 
     public function divisi()

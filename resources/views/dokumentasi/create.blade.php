@@ -16,7 +16,11 @@
             <!-- Nama -->
             <div class="mb-4">
                 <label for="nama" class="block font-semibold mb-2">Nama:</label>
-                <input type="text" id="nama" name="nama" class="form-input w-full border border-gray-300 p-2 rounded" required>
+                <select name="nama" id="nama" class="form-select w-full border border-gray-300 p-2 rounded" required>
+                    @foreach($proker as $prok)
+                        <option value="{{ $prok->nama }}">{{ $prok->nama }}</option>
+                    @endforeach
+                </select>
             </div>
 
             <!-- Deskripsi -->

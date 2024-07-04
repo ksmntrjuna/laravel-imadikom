@@ -51,6 +51,10 @@
                 <strong class="w-32">Telepon</strong>
                 <span>: {{ $pengurus->telp }}</span>
             </div>
+            <div class="flex mb-2">
+                <strong class="w-32">Angkatan</strong>
+                <span>: {{ $pengurus->angkatan }}</span>
+            </div>
         </div>
     </div>
 

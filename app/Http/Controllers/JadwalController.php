@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jadwal;
+use App\Models\Proker;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -76,7 +77,9 @@ class JadwalController extends Controller
      */
     public function create()
     {
-        return view('jadwal.create');
+        $proker = Proker::all();
+
+        return view('jadwal.create', compact('proker'));
     }
 
     /**
@@ -106,7 +109,9 @@ class JadwalController extends Controller
      */
     public function edit(Jadwal $jadwal)
     {
-        return view('jadwal.edit', compact('jadwal'));
+        $proker = Proker::all();
+
+        return view('jadwal.edit', compact('jadwal', 'proker'));
     }
 
     /**

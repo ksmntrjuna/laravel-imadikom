@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dokumentasi;
+use App\Models\Proker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -44,7 +45,9 @@ class DokumentasiController extends Controller
 
     public function create()
     {
-        return view('dokumentasi.create');
+        $proker = Proker::all();
+
+        return view('dokumentasi.create', compact('proker'));
     }
 
     public function store(Request $request)
@@ -77,7 +80,9 @@ class DokumentasiController extends Controller
 
     public function edit(Dokumentasi $dokumentasi)
     {
-        return view('dokumentasi.edit', compact('dokumentasi'));
+        $proker = Proker::all();
+
+        return view('dokumentasi.edit', compact('dokumentasi', 'proker'));
     }
 
     public function update(Request $request, Dokumentasi $dokumentasi)

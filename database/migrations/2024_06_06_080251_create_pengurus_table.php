@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('email')->unique(); // Tambahkan batasan unik pada email
             $table->string('telp');
             $table->string('kelas');
-            $table->string('foto'); 
+            $table->string('foto');
+            $table->string('angkatan');
             $table->unsignedBigInteger('divisi_id'); // Menggunakan unsignedBigInteger karena ini adalah kunci asing
             $table->unsignedBigInteger('jabatan_id'); // Menggunakan unsignedBigInteger karena ini adalah kunci asing
             $table->timestamps();

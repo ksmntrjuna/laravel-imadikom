@@ -21,12 +21,13 @@ class PengurusController extends Controller
 
         if ($search) {
             $query->where('nama', 'like', '%' . $search . '%')
-            ->orWhereHas('divisi', function ($query) use ($search) {
-                $query->where('nama_divisi', 'like', '%' . $search . '%');
-            })
-            ->orWhereHas('jabatan', function ($query) use ($search) {
-                $query->where('nama_jabatan', 'like', '%' . $search . '%');
-            });
+                ->orWhere('angkatan', 'like', '%' . $search . '%')
+                ->orWhereHas('divisi', function ($query) use ($search) {
+                    $query->where('nama_divisi', 'like', '%' . $search . '%');
+                })
+                ->orWhereHas('jabatan', function ($query) use ($search) {
+                    $query->where('nama_jabatan', 'like', '%' . $search . '%');
+                });
         }
 
         if ($tahun) {
@@ -62,6 +63,7 @@ class PengurusController extends Controller
             'email' => 'required|email|unique:pengurus,email',
             'telp' => 'required',
             'kelas' => 'required',
+            'angkatan' => 'required',
             'foto' => 'nullable|image|max:2048', // Validasi file foto
         ]);
 
@@ -108,6 +110,7 @@ class PengurusController extends Controller
             'telp' => 'required',
             'kelas' => 'required',
             'foto' => 'nullable|image|max:2048', // Validasi file foto
+            'angkatan' => 'required',
         ]);
 
         // Inisialisasi array data dengan data yang diterima

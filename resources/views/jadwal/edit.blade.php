@@ -16,7 +16,13 @@
             <!-- Nama Kegiatan -->
             <div class="mb-4">
                 <label for="nama_kegiatan" class="block font-semibold mb-2">Nama Kegiatan:</label>
-                <input type="text" name="nama_kegiatan" id="nama_kegiatan" class="form-input w-full border border-gray-300 p-2 rounded" value="{{ old('nama_kegiatan', $jadwal->nama_kegiatan) }}" required>
+                <select name="nama_kegiatan" id="nama_kegiatan" class="form-select w-full border border-gray-300 p-2 rounded" required>
+                    @foreach($proker as $prok)
+                        <option value="{{ $prok->nama }}" {{ $jadwal->nama_kegiatan == $prok->nama ? 'selected' : '' }}>
+                            {{ $prok->nama }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
 
             <!-- Mulai -->

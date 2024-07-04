@@ -34,6 +34,7 @@
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider font-sans">Nama</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider font-sans">Divisi</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider font-sans">Jabatan</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider font-sans">Angkatan (Tahun)</th>
                     @auth
                     <!-- Display the "Aksi" column only for authenticated users -->
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider font-sans">Aksi</th>
@@ -52,6 +53,7 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap font-sans">{{ $p->divisi->nama_divisi }}</td>
                     <td class="px-6 py-4 whitespace-nowrap font-sans">{{ $p->jabatan->nama_jabatan }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap font-sans">{{ $p->angkatan }}</td>
                     @auth
                     <!-- Display the "Edit" and "Hapus" buttons only for authenticated users -->
                     <td class="px-6 py-4 whitespace-nowrap">

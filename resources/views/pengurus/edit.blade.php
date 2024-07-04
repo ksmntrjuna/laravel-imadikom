@@ -85,6 +85,12 @@
                 @endif
             </div>
 
+            <!-- Angkatan -->
+            <div class="mb-4">
+                <label for="angkatan" class="block font-semibold mb-2">Angkatan:</label>
+                <input type="text" class="form-input w-full border border-gray-300 p-2 rounded" id="angkatan" name="angkatan" value="{{ $pengurus->angkatan }}">
+            </div>
+
             <!-- Tombol Simpan -->
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                 Simpan
